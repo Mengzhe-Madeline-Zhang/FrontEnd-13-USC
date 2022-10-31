@@ -8,7 +8,7 @@ interface sessionForm {
   formType: sessionEnum;
 }
 
-function SessionForm(props: sessionForm) {
+function SessionForm(props: any) {
   let navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
