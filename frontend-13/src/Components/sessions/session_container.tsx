@@ -1,11 +1,13 @@
 import {connect} from 'react-redux';
-import { login, testSignUp } from '../../actions/session_actions';
+import { login } from '../../actions/session_actions';
+import { testSignUp } from '../../actions/user_actions';
 import SessionForm from './session_form'
 
 const mSTP = (state:any) => {
     return {
-        currentUser: state.user,
-        users: state.session
+        currentUser: state.session.user,
+        users: state.users,
+        testState: state
     }
 }
 

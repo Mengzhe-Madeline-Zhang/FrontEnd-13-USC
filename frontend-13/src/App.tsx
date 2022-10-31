@@ -11,6 +11,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path='/login' element={<SessionForm formType='login'/>} />
+                <Route path='/signup' element={<SessionForm formType='signUp'/>} />
             </Routes>
         </BrowserRouter>
   );

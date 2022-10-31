@@ -26,7 +26,7 @@ import {useNavigate} from 'react-router-dom';
 
     useEffect(() => {
       if (currentUser){
-        navigate("/");
+        navigate("/")
       }
     },[currentUser])
     
@@ -34,9 +34,17 @@ import {useNavigate} from 'react-router-dom';
       e.preventDefault();
       if (props.formType === 'login') {
         debugger;
-        setCurrentUser(1);
+        if(props.users[username]) {
+          setCurrentUser(username);
+        } else {
+          alert('NOT REGISTERED');
+        }
       } else {
-        //logic for signup
+        debugger;
+        if (!props.users[username]) {
+          props.testSignUp({username:username, password:password})
+          navigate("/login");
+        }
       }
     }
     return (
@@ -70,7 +78,7 @@ import {useNavigate} from 'react-router-dom';
           </Container>
           ):(
           <Container>
-            <Button fullWidth variant="contained" color="primary">
+            <Button type="submit" fullWidth variant="contained" color="primary">
               Sign Up
             </Button>
             <Typography variant="h5">
