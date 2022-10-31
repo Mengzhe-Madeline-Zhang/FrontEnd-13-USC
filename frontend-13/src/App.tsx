@@ -1,7 +1,7 @@
 import './App.css';
 import Home from "./Components/Home/Home";
-import Sign_in_up from './Components/Sign_in_up/Sign_in_up';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import SessionForm from "./Components/sessions/session_container"
 
 function App() {
 
@@ -10,9 +10,7 @@ function App() {
     <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home/>} />
-                {/* <Route path="Sign_in">
-                    <Route index element={<Sign_in_up props={fromType: "Sign_in"}/>} />
-                </Route> */}
+                <Route path='/login' element={<SessionForm formType='login'/>} />
             </Routes>
         </BrowserRouter>
   );
