@@ -7,7 +7,7 @@ function Home() {
           <Typography color="primary.dark" variant="h1">
             Welcome! This is home page.
           </Typography>
-          <Link href="/SignIn">
+          <Link href="/login">
           Please sign in & sign up here!
           </Link>
   
