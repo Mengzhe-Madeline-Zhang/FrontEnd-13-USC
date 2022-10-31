@@ -1,6 +1,6 @@
 import { Container, Typography, TextField, Button, Link } from "@mui/material";
 import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 export type sessionEnum = "login" | "sign_up";
 
@@ -18,21 +18,29 @@ function SessionForm(props: sessionForm) {
 
   useEffect(() => {}, []);
 
-  useEffect(() => {
-    if (currentUser) {
-      navigate("/");
+    useEffect(() => {
+      if (currentUser){
+        navigate("/")
+      }
+    },[currentUser])
+    
+    const submitHandler = (e:any) => {
+      e.preventDefault();
+      if (props.formType === 'login') {
+        debugger;
+        if(props.users[username]) {
+          setCurrentUser(username);
+        } else {
+          alert('NOT REGISTERED');
+        }
+      } else {
+        debugger;
+        if (!props.users[username]) {
+          props.testSignUp({username:username, password:password})
+          navigate("/login");
+        }
+      }
     }
-  }, [currentUser]);
-
-  const submitHandler = (e: any) => {
-    e.preventDefault();
-    if (props.formType === "login") {
-      debugger;
-      setCurrentUser(1);
-    } else {
-      //logic for signup
-    }
-  };
 
   //Sign up password validation
   const handleValidation = (e:any) => {
@@ -116,7 +124,7 @@ function SessionForm(props: sessionForm) {
           </Container>
         ) : (
           <Container>
-            <Button fullWidth variant="contained" color="primary">
+            <Button type="submit" fullWidth variant="contained" color="primary">
               Sign Up
             </Button>
             <Typography variant="h5">Aleady have account?</Typography>
