@@ -18,7 +18,8 @@ export const receiveUserLogout = () => ({
 });
 
 export const login = (user:{username:string; password:string;}) => (dispatch:any) => {
-    sessionUtil.login(user).then(userData => dispatch(receiveCurrentUser(userData))) //chain .catch later when error handling is added
+    return sessionUtil.login(user).then(userData => dispatch(receiveCurrentUser(userData))) //chain .catch later when error handling is added
 }
+
 
 //add logout later
