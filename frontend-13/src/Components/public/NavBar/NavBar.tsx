@@ -6,8 +6,11 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
+    ListItem,
     Stack,
     Typography,
+    Link,
+    Grid
   } from "@mui/material";
   import {
     // AppbarActionIcons,
@@ -29,19 +32,36 @@ return(
 <AppbarContainer>
       <AppbarHeader variant="h4">Happy Shop</AppbarHeader>
       <MyList >
-        <ListItemText primary="Home" />
-        <ListItemText primary="Categories" />
-        <ListItemText primary="Products" />
-        <ListItemText primary="About us" />
-        <ListItemText primary="Contact us" />
+     
+      <ListItem button component="a" href="/" >
+        <ListItemText secondary="Home"/>
+        </ListItem>
+
+        <ListItem button component="a" href="/" >
+        <ListItemText secondary="Categories" />
+        </ListItem>
+
+        <ListItem button component="a" href="/">
+        <ListItemText secondary="Products" />
+        </ListItem>
+
+        <ListItem button component="a" href="/">
+        <ListItemText secondary="About us" />
+        </ListItem>
+
+        {/* <ListItem button component="a" href="/">
+        <ListItemText secondary="Contact us" />
+        </ListItem>
+     */}
         {/* <ListItemButton onClick={() => setShowSearchBox(true)}> */}
-        <ListItemButton>
+    
+        <ListItem button>
           <ListItemIcon>
             <SearchIcon />
           </ListItemIcon>
-        </ListItemButton>
+        </ListItem>
 
-        <ListItemButton
+        <ListItem button
           sx={{
             justifyContent: "center",
           }}
@@ -55,9 +75,10 @@ return(
           >
             <ShoppingCartIcon />
           </ListItemIcon>
-        </ListItemButton>
+        </ListItem >
         <Divider orientation="vertical" flexItem />
-        <ListItemButton
+
+        <ListItem button
           sx={{
             justifyContent: "center",
           }}
@@ -71,13 +92,15 @@ return(
           >
             <FavoriteIcon />
           </ListItemIcon>
-        </ListItemButton>
+        </ListItem>
         <Divider orientation="vertical" flexItem />
-        <ListItemButton
+
+        <ListItem button component="a" href="/login"
           sx={{
             justifyContent: "center",
           }}
         >
+        
           <ListItemIcon
             sx={{
               display: "flex",
@@ -87,8 +110,11 @@ return(
           >
             <PersonIcon />
           </ListItemIcon>
-        </ListItemButton>
+       
+        </ListItem>
+
         <Divider orientation="vertical" flexItem />
+     
           </MyList>
        
     </AppbarContainer>

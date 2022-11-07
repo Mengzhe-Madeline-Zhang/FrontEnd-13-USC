@@ -13,9 +13,6 @@ export const BannerContainer = styled(Box)(({ theme }) => ({
     flexDirection: "column",
     alignItems: "center",
   },
-//   backgroundImage: `url(/images/banner/banner.png)`,
-//   backgroundRepeat: "no-repeat",
-//   backgroundPosition: "center",
 }));
 
 export const BannerContent = styled(Box)(() => ({
@@ -28,9 +25,6 @@ export const BannerContent = styled(Box)(() => ({
 
 export const BannerImage = styled("img")(({ src, theme }) => ({
   src: `url(${src})`,
-  // backgroundImage: `url(${src})`,
-  // backgroundRepeat: "no-repeat",
-  // backgroundPosition: "center",
   width: "500px",
   [theme.breakpoints.down("md")]: {
     width: "350px",
@@ -61,24 +55,24 @@ export const BannerDescription = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const BannerShopButton = styled(Button, {
-  // Configure which props should be forwarded on DOM
-  shouldForwardProp: (prop) => prop !== "color",
-  name: "MyShopButton",
-  slot: "Root",
-  // We are specifying here how the styleOverrides are being applied based on props
-  overridesResolver: (props, styles) => [
-    styles.root,
-    props.color === "primary" && styles.primary,
-    props.color === "secondary" && styles.secondary,
-  ],
-})(({ theme }) => ({
-  padding: "20px 0px",
-  color: Colors.white,
-  fontWeight: "bold",
-  fontSize: "16px",
-  [theme.breakpoints.down("sm")]: {
-    padding: "10px 0px",
-    fontSize: "14px",
-  },
-}));
+// export const BannerShopButton = styled(Button, {
+//   // Configure which props should be forwarded on DOM
+//   shouldForwardProp: (prop) => prop !== "color",
+//   name: "MyShopButton",
+//   slot: "Root",
+//   // We are specifying here how the styleOverrides are being applied based on props
+//   overridesResolver: (props, styles) => [
+//     styles.root,
+//     props.color === "primary" && styles.primary,
+//     props.color === "secondary" && styles.secondary,
+//   ],
+// })(({ theme }) => ({
+//   padding: "20px 0px",
+//   color: Colors.white,
+//   fontWeight: "bold",
+//   fontSize: "16px",
+//   [theme.breakpoints.down("sm")]: {
+//     padding: "10px 0px",
+//     fontSize: "14px",
+//   },
+// }));

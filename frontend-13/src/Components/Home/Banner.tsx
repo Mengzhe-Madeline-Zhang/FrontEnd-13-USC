@@ -4,16 +4,15 @@ import {
     BannerContent,
     BannerDescription,
     BannerImage,
-    BannerShopButton,
+    // BannerShopButton,
     BannerTitle,
   } from "../../styles/banner";
-  import BannerBackground from "../public/images/shop.png";
 
 export default function Banner(){
     return(
         
         <BannerContainer >
-        <BannerImage src={BannerBackground} />
+        <BannerImage src="/images/shop.png" />
         <BannerContent>
           <Typography variant="h6">Big sale!</Typography>
           <BannerTitle variant="h2">
@@ -25,7 +24,7 @@ export default function Banner(){
             tempor incididunt ut labore et dolore magna
           </BannerDescription>
   
-          <BannerShopButton color="primary">Shop Now</BannerShopButton>
+          {/* <BannerShopButton color="primary">Shop Now</BannerShopButton> */}
         </BannerContent>
       </BannerContainer>
     )
