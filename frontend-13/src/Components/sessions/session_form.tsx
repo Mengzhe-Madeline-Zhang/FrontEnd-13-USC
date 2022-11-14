@@ -16,31 +16,43 @@ function SessionForm(props: any) {
   const [currentUser, setCurrentUser] = useState<any | null>(null);
   const [valid, setValid] = useState(true);
 
-  useEffect(() => {}, []);
-
-    useEffect(() => {
-      if (currentUser){
-        navigate("/")
-      }
-    },[currentUser])
-    
-    const submitHandler = (e:any) => {
-      e.preventDefault();
-      if (props.formType === 'login') {
-        debugger;
-        if(props.users[username]) {
-          setCurrentUser(username);
-        } else {
-          alert('NOT REGISTERED');
-        }
-      } else {
-        debugger;
-        if (!props.users[username]) {
-          props.testSignUp({username:username, password:password})
-          navigate("/login");
-        }
-      }
+  const submitHandler = (e: React.SyntheticEvent ): void =>  {
+    e.preventDefault();
+    if (props.formType ===  'login') {
+      props.login({
+        username: username,
+        password: password
+      })
+      .then(() => navigate("/"));
     }
+  }
+
+
+  // useEffect(() => {}, []);
+
+  //   useEffect(() => {
+  //     if (currentUser){
+  //       navigate("/")
+  //     }
+  //   },[currentUser])
+    
+  //   const submitHandler = (e:any) => {
+  //     e.preventDefault();
+  //     if (props.formType === 'login') {
+  //       debugger;
+  //       if(props.users[username]) {
+  //         setCurrentUser(username);
+  //       } else {
+  //         alert('NOT REGISTERED');
+  //       }
+  //     } else {
+  //       debugger;
+  //       if (!props.users[username]) {
+  //         props.testSignUp({username:username, password:password})
+  //         navigate("/login");
+  //       }
+  //     }
+  //   }
 
   //Sign up password validation
   const handleValidation = (e:any) => {
