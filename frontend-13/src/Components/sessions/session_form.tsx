@@ -1,4 +1,4 @@
-import { Container, Typography, TextField, Button, Link } from "@mui/material";
+import { Container, Typography, TextField, Button, Link, Box } from "@mui/material";
 import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -53,7 +53,8 @@ function SessionForm(props: any) {
 
   return (
     <Container maxWidth="xs">
-      <Typography variant="h3">
+
+      <Typography variant="h3" align="center">
         {props.formType === "login" ? "Login" : "Sing Up"}
       </Typography>
       <form onSubmit={submitHandler}>
@@ -117,8 +118,8 @@ function SessionForm(props: any) {
             <Button type="submit" fullWidth variant="contained" color="primary">
               Login
             </Button>
-            <Typography variant="h5">New here?</Typography>
-            <Link variant="h5" href="/signup">
+            <Typography variant="h6">New here?</Typography>
+            <Link variant="h6" href="/signup">
               Please Sign up!
             </Link>
           </Container>
@@ -127,13 +128,14 @@ function SessionForm(props: any) {
             <Button type="submit" fullWidth variant="contained" color="primary">
               Sign Up
             </Button>
-            <Typography variant="h5">Aleady have account?</Typography>
-            <Link variant="h5" href="/login">
+            <Typography variant="h6" >Aleady have account?</Typography>
+            <Link variant="h6" href="/login">
               Please Sign in here!
             </Link>
           </Container>
         )}
       </form>
+
     </Container>
   );
 }

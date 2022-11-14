@@ -2,11 +2,24 @@ import './App.css';
 import Home from "./Components/Home/Home";
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import SessionForm from "./Components/sessions/session_container"
+import NavBar from './Components/public/NavBar/NavBar';
+import { Typography, Link, Container } from "@mui/material";
+import { ThemeProvider } from "@mui/system";
+import theme from "./styles/theme";
 
 function App() {
 
   return (
-   
+    <>
+       <div>
+      <ThemeProvider theme={theme}>
+   <Container
+    sx={{
+      background: "#fff",
+    }}>
+    <NavBar/>
+
+
     <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home/>} />
@@ -14,6 +27,11 @@ function App() {
                 <Route path='/signup' element={<SessionForm formType='sign_up'/>} />
             </Routes>
         </BrowserRouter>
+
+    </Container>
+    </ThemeProvider>
+    </div>
+        </>
   );
 }
 
