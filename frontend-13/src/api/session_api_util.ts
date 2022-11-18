@@ -4,9 +4,8 @@ export const signup = (userData:{username: string; password: string}) => {
 
     return axios({
         method: 'post',
-        headers: { "Access-Control-Allow-Origin" : '*'},
         data: userData,
-        url: 'http://localhost:8080/signup/'
+        url: 'http://localhost:8080/users/'
     })
 }
 

@@ -5,7 +5,7 @@ const usersReducer = (state = {test:{username:'test', password:'test'}}, action:
     let newState:any = Object.assign({},state);
     switch(action.type) {
         case RECEIVE_NEW_USER:
-            newState[action.payload.username] = action.payload;
+            newState['SignUpStatus'] = action.payload;
             return newState;
         default:
             return state;

@@ -18,12 +18,21 @@ function SessionForm(props: any) {
 
   const submitHandler = (e: React.SyntheticEvent ): void =>  {
     e.preventDefault();
+    console.log(props.formType);
     if (props.formType ===  'login') {
       props.login({
         username: username,
         password: password
       })
-      .then(() => navigate("/"));
+      .then(() => navigate("/"))
+      .catch((err:any) => console.log(err));
+    } else {
+      props.signup({
+        username: username,
+        password: password
+      })
+      .then(() => navigate("/login"))
+      .catch((err:any) => console.log(err))
     }
   }
 

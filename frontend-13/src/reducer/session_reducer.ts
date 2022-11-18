@@ -5,7 +5,8 @@ const sessionReducer = (state = {}, action:{type:string; payload:any}) => {
     let newState:any = Object.assign({},state);
     switch(action.type) {
         case RECEIVE_CURRENT_USER:
-            return {user:action.payload};
+            newState['sessionId'] = action.payload;
+            return newState;
         default:
             return state;
     }
