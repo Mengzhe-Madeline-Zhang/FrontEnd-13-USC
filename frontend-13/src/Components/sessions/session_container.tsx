@@ -6,15 +6,16 @@ import SessionForm from './session_form'
 const mSTP = (state:any) => {
     return {
         currentUser: state.session.user,
-        users: state.users,
-        testState: state
+        users: state.users.signUpStatus,
+        loginError: state.session.loginError,
+        registerError: state.users.signUpError
     }
 }
 
 const mDTP = (dispatch:any) => {
     return {
-        login: (user:{username:string; password:string}) => dispatch(login(user)), 
-        signUp: (user: {username:string; password:string;}) => dispatch(signup(user))
+        login: (user:{username:string, password:string}) => dispatch(login(user)), 
+        signUp: (user: {username:string, password:string}) => dispatch(signup(user))
     }
 }
 

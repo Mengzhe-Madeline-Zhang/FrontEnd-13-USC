@@ -5,9 +5,9 @@ export const RECEIVE_USER_LOGIN = 'RECEIVE_USER_LOGIN';
 export const RECEIVE_USER_LOGOUT = 'RECEIVE_USER_LOGOUT';
 export const RECEIVE_LOGIN_ERROR = 'RECEIVE_LOGIN_ERROR';
 
-export const receiveCurrentUser = (currentUser:any) => ({
+export const receiveCurrentUser = (token:string) => ({
     type: RECEIVE_CURRENT_USER,
-    payload: currentUser
+    payload: token
 });
 
 export const receiveLoginError = (err:any) => ({
@@ -25,8 +25,12 @@ export const receiveUserLogout = () => ({
 
 export const login = (user:{username:string; password:string;}) => (dispatch:any) => {
     return sessionUtil.login(user)
-    .then(res => dispatch(receiveCurrentUser(res.data)))
-    .catch(err => dispatch(receiveLoginError(err.response.data)))
+    .then((res:any) => {
+       return dispatch(receiveCurrentUser(res.data))
+    })  
+    .catch((err:any) => {
+        return dispatch(receiveLoginError(err.response.data))   
+    })
 }
 
 

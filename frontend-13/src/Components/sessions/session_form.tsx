@@ -12,56 +12,45 @@ function SessionForm(props: any) {
   let navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [currentUser, setCurrentUser] = useState<any | null>(null);
   const [valid, setValid] = useState(true);
+  const [loginErr, setLoginErr] = useState(false);
+  const [signUpErr, setSignUpErr] = useState(false);
+
+  useEffect(() => {
+    console.log(props.loginError)
+  },[])
+  
+  
+  useEffect(() => {
+    if (props.currentUser) {
+      navigate("/");
+      return;
+    }
+    if (props.signUpStatus === 'SUCCESS') {
+      navigate("/login")
+    }
+  },[props.currentUser, props.signUpStatus])
+
 
   const submitHandler = (e: React.SyntheticEvent ): void =>  {
     e.preventDefault();
-    console.log(props.formType);
     if (props.formType ===  'login') {
       props.login({
         username: username,
         password: password
       })
-      .then(() => navigate("/"))
-      .catch((err:any) => console.log(err));
     } else {
-      props.signup({
+      props.signUp({
         username: username,
         password: password
       })
-      .then(() => navigate("/login"))
-      .catch((err:any) => console.log(err))
     }
   }
 
+  useEffect(() => {
 
-  // useEffect(() => {}, []);
+  },[props.currentUser])
 
-  //   useEffect(() => {
-  //     if (currentUser){
-  //       navigate("/")
-  //     }
-  //   },[currentUser])
-    
-  //   const submitHandler = (e:any) => {
-  //     e.preventDefault();
-  //     if (props.formType === 'login') {
-  //       debugger;
-  //       if(props.users[username]) {
-  //         setCurrentUser(username);
-  //       } else {
-  //         alert('NOT REGISTERED');
-  //       }
-  //     } else {
-  //       debugger;
-  //       if (!props.users[username]) {
-  //         props.testSignUp({username:username, password:password})
-  //         navigate("/login");
-  //       }
-  //     }
-  //   }
 
   //Sign up password validation
   const handleValidation = (e:any) => {
@@ -76,7 +65,7 @@ function SessionForm(props: any) {
     <Container maxWidth="xs">
 
       <Typography variant="h3" align="center">
-        {props.formType === "login" ? "Login" : "Sing Up"}
+        {props.formType === "login" ? "Login" : "Sign Up"}
       </Typography>
       <form onSubmit={submitHandler}>
         {props.formType === "login" ? (
@@ -112,14 +101,14 @@ function SessionForm(props: any) {
               fullWidth
               required
             />
-            <TextField
+            {/* <TextField
               onChange={(e) => setName(e.target.value)}
               variant="outlined"
               margin="normal"
               label="First Name"
               fullWidth
               required
-            />
+            /> */}
             <TextField
               onChange={(e) => handleValidation(e)}
               variant="outlined"
@@ -155,6 +144,15 @@ function SessionForm(props: any) {
             </Link>
           </Container>
         )}
+        {
+          props.formType === 'login' ? (
+            props.loginError ? <p>Your credentials are incorrect</p> : <></>
+          )
+          :
+          (
+            props.signUpError ? <p>Your username is taken! Please try another one!</p> : <></>
+          )
+        }
       </form>
 
     </Container>

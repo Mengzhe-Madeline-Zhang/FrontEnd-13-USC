@@ -15,6 +15,6 @@ export const receiveRegistrationError = (err:any) => ({
 
 export const signup = (user: {username: string; password: string;}) => (dispatch:any) => {
     return sessionUtil.signup(user)
-    .then(() => dispatch(receiveNewUser()))
-    .catch((err) => dispatch(receiveRegistrationError(err)))
+    .then(() => (dispatch(receiveNewUser())))
+    .catch((err:any) => (dispatch(receiveRegistrationError(err))))
 }
