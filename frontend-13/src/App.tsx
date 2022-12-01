@@ -6,11 +6,14 @@ import NavBar from './Components/public/NavBar/NavBar';
 import { Typography, Link, Container } from "@mui/material";
 import { ThemeProvider } from "@mui/system";
 import theme from "./styles/theme";
+import {Provider} from 'react-redux';
+import store from './Redux/store'
 
 function App() {
 
   return (
     <>
+    <Provider store={store}>
        <div>
       <ThemeProvider theme={theme}>
    <Container
@@ -31,6 +34,7 @@ function App() {
     </Container>
     </ThemeProvider>
     </div>
+    </Provider>
         </>
   );
 }

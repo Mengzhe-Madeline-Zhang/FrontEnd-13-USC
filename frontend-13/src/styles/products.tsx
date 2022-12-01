@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import { slideInBottom, slideInRight } from "../animations";
 import { Colors } from "./theme";
 
-export const Product = styled(Box)(({ theme }) => ({
+export const ProductBox:any = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",

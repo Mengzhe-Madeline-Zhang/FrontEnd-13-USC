@@ -1,23 +1,38 @@
 import { Drawer } from "@mui/material";
+import React from "react";
+import { getCartProduct, getTotalPrice, removeFromCart } from "../../Redux/cart.slice";
+import { useAppDispatch, useAppSeletor } from "../../Redux/store.hook";
+import { ProductBox } from "../../styles/products";
 import {Colors} from "../../styles/theme";
 import {CartItemType} from "../Home/Home";
 import CartItem from "./CartItem";
 
-type Props = {
-    cartOpen:boolean;
-    setCartOpen:(cartOpen: boolean)=>void;
-    cartItems: CartItemType[];
-    addToCart: (clickedItem: CartItemType) => void;
-    removeFromCart: (id: number) => void;
-  };
+// type Props = {
+//     cartOpen:boolean;
+//     setCartOpen:(cartOpen: boolean)=>void;
+//     cartItems: CartItemType[];
+//     addToCart: (clickedItem: CartItemType) => void;
+//     removeFromCart: (id: number) => void;
+//   };
 
-const Cart: React.FC<Props>=({cartOpen, setCartOpen, cartItems, addToCart, removeFromCart})=>{
+const Cart: React.FC=({
+  // cartOpen, setCartOpen, cartItems, addToCart, removeFromCart
+})=>{
 
-    const calculateTotal = (items: CartItemType[]) =>
-    items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
+    // const calculateTotal = (items: CartItemType[]) =>
+    // items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
+
+    const cartProducts = useAppSeletor(getCartProduct);
+    const totalPrice = useAppSeletor(getTotalPrice);
+    const dispatch = useAppDispatch();
+
+    const handleRemoveFromCart = (productId: number)=>dispatch(removeFromCart(productId));
 
 return(
-    <Drawer open={cartOpen} onClose={() => setCartOpen(false)}
+  <>
+    {/* <Drawer open={
+      cartOpen
+    } onClose={() => setCartOpen(false)}
     anchor="right"
     PaperProps={{
 
@@ -28,11 +43,12 @@ return(
         }
     }
     }
-    >
+    > */}
+      
     <h1>
         My Cart 
     </h1>
-    {cartItems.length === 0 ? <p>No items in cart.</p> : null}
+    {/* {cartItems.length === 0 ? <p>No items in cart.</p> : null}
       {cartItems.map(item => (
         <CartItem
           key={item.id}
@@ -41,8 +57,22 @@ return(
           removeFromCart={removeFromCart}
         />
       ))}
-      <h2>Total: ${calculateTotal(cartItems).toFixed(2)}</h2>
-        </Drawer>
+      <h2>Total: ${calculateTotal(cartItems).toFixed(2)}</h2> */}
+
+      <h5>{totalPrice}</h5>
+      {cartProducts.map(product=>(
+        <React.Fragment key={product.id}>
+        
+        <span>{product.name}</span>
+        <span>{product.amount}</span>
+        <button onClick={()=> handleRemoveFromCart(product.id)}> Remove </button>
+     
+        </React.Fragment>
+    
+      ))}
+  
+        {/* </Drawer> */}
+        </>
 )
   
 }
