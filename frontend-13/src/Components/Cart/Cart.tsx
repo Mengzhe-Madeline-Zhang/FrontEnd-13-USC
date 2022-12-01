@@ -1,6 +1,7 @@
 import { Drawer } from "@mui/material";
 import React from "react";
 import { getCartProduct, getTotalPrice, removeFromCart } from "../../Redux/cart.slice";
+import { OpenCart, getCartStatus } from "../../Redux/showcart.slice";
 import { useAppDispatch, useAppSeletor } from "../../Redux/store.hook";
 import { ProductBox } from "../../styles/products";
 import {Colors} from "../../styles/theme";
@@ -21,18 +22,22 @@ const Cart: React.FC=({
 
     // const calculateTotal = (items: CartItemType[]) =>
     // items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
+  
 
     const cartProducts = useAppSeletor(getCartProduct);
     const totalPrice = useAppSeletor(getTotalPrice);
+    const show = useAppSeletor(getCartStatus);
     const dispatch = useAppDispatch();
 
     const handleRemoveFromCart = (productId: number)=>dispatch(removeFromCart(productId));
+    // const closeChart=() => dispatch(OpenCart);
 
 return(
   <>
-    {/* <Drawer open={
-      cartOpen
-    } onClose={() => setCartOpen(false)}
+  {console.log(getCartStatus)}
+    <Drawer
+     open={ show } 
+    // onClose={() => closeChart }
     anchor="right"
     PaperProps={{
 
@@ -43,7 +48,7 @@ return(
         }
     }
     }
-    > */}
+    >
       
     <h1>
         My Cart 
@@ -71,7 +76,7 @@ return(
     
       ))}
   
-        {/* </Drawer> */}
+        </Drawer>
         </>
 )
   

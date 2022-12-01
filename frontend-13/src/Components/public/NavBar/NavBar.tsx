@@ -23,9 +23,16 @@ import {
   import FavoriteIcon from "@mui/icons-material/Favorite";
   import SearchIcon from "@mui/icons-material/Search";
   import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+  import { OpenCart, getCartStatus } from "../../../Redux/showcart.slice";
+  import { useAppDispatch, useAppSeletor } from "../../../Redux/store.hook";
 
 
 function NavBar(){
+  const dispatch = useAppDispatch();
+  const show = useAppSeletor(getCartStatus);
+  const handleOpenCart = (showornot:boolean)=>{dispatch(OpenCart(showornot));
+  console.log(show)};
+ 
 // const theme = useTheme();
 
 return(
@@ -65,6 +72,8 @@ return(
           sx={{
             justifyContent: "center",
           }}
+          onClick={()=>handleOpenCart(show)}
+          
         >
           <ListItemIcon
             sx={{
