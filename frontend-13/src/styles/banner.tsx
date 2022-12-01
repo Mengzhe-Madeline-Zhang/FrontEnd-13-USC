@@ -76,3 +76,25 @@ export const BannerDescription = styled(Typography)(({ theme }) => ({
 //     fontSize: "14px",
 //   },
 // }));
+
+export const BannerShopButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== "color",
+})(({  theme }) => ({
+  padding: "20px 0px",
+  // color: Colors.white,
+  color:Colors.dark,
+  fontWeight: "bold",
+  fontSize: "16px",
+  [theme.breakpoints.up("sm")]: {
+    // position: "absolute",    
+    // bottom: "2%",
+    // width: "300px",
+    fontSize: "14px",
+    padding: "10px 0",
+    // animation:
+    //   show &&
+    //   `${slideInBottom} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both`,
+  },
+  background: Colors.secondary,
+  opacity: 0.9,
+}));
