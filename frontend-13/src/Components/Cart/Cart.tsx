@@ -31,13 +31,14 @@ const Cart: React.FC=({
 
     const handleRemoveFromCart = (productId: number)=>dispatch(removeFromCart(productId));
     // const closeChart=() => dispatch(OpenCart);
+    const handleOpenCart = (showornot:boolean)=>{dispatch(OpenCart(showornot))};
 
 return(
   <>
   {console.log(getCartStatus)}
     <Drawer
      open={ show } 
-    // onClose={() => closeChart }
+    onClose={() => handleOpenCart(show) }
     anchor="right"
     PaperProps={{
 

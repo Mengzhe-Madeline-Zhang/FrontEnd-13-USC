@@ -30,8 +30,7 @@ import {
 function NavBar(){
   const dispatch = useAppDispatch();
   const show = useAppSeletor(getCartStatus);
-  const handleOpenCart = (showornot:boolean)=>{dispatch(OpenCart(showornot));
-  console.log(show)};
+  const handleOpenCart = (showornot:boolean)=>{dispatch(OpenCart(showornot))};
  
 // const theme = useTheme();
 
