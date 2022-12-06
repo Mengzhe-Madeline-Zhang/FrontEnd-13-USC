@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Colors } from "./theme";
+import { darken, lighten } from "polished";
 
 export const BannerContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -81,8 +82,8 @@ export const BannerShopButton = styled(Button, {
   shouldForwardProp: (prop) => prop !== "color",
 })(({  theme }) => ({
   padding: "20px 0px",
-  // color: Colors.white,
-  color:Colors.dark,
+  color: Colors.white,
+  // color:Colors.dark,
   fontWeight: "bold",
   fontSize: "16px",
   [theme.breakpoints.up("sm")]: {
@@ -96,5 +97,8 @@ export const BannerShopButton = styled(Button, {
     //   `${slideInBottom} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both`,
   },
   background: Colors.secondary,
+  "&:hover": {
+            background: lighten(0.05, Colors.primary),
+          },
   opacity: 0.9,
 }));

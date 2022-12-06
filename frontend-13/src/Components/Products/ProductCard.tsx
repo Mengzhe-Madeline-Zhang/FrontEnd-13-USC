@@ -81,13 +81,13 @@ export default function ProductCard(
         <ProductFavButton isfav={0}>
           <FavoriteIcon />
         </ProductFavButton>
-        {showOptions && (
+        {showOptions ? (
           <ProductAddToCart show={showOptions} variant="contained"
           onClick={()=>addToCartHander(product)}>
             Add to cart
           </ProductAddToCart>
-        )}
-        <ProductActionsWrapper shows={showOptions}>
+        ): undefined}
+        <ProductActionsWrapper show={showOptions}>
           <Stack direction={"column"}>
             <ProductActionButton>
               <Tooltip placement="left" title="share this product">

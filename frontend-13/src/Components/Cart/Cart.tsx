@@ -1,85 +1,126 @@
-import { Drawer } from "@mui/material";
+import {
+  Drawer,
+  Box,
+  Avatar,
+  Typography,
+  Divider,
+  Paper,
+  Button,
+} from "@mui/material";
 import React from "react";
-import { getCartProduct, getTotalPrice, removeFromCart } from "../../Redux/cart.slice";
+import {
+  getCartProduct,
+  getTotalPrice,
+  removeFromCart,
+} from "../../Redux/cart.slice";
 import { OpenCart, getCartStatus } from "../../Redux/showcart.slice";
 import { useAppDispatch, useAppSeletor } from "../../Redux/store.hook";
-import { ProductBox } from "../../styles/products";
-import {Colors} from "../../styles/theme";
-import {CartItemType} from "../Home/Home";
-import CartItem from "./CartItem";
+import { Colors } from "../../styles/theme";
 
-// type Props = {
-//     cartOpen:boolean;
-//     setCartOpen:(cartOpen: boolean)=>void;
-//     cartItems: CartItemType[];
-//     addToCart: (clickedItem: CartItemType) => void;
-//     removeFromCart: (id: number) => void;
-//   };
 
-const Cart: React.FC=({
-  // cartOpen, setCartOpen, cartItems, addToCart, removeFromCart
-})=>{
+const Cart: React.FC = () => {
 
-    // const calculateTotal = (items: CartItemType[]) =>
-    // items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
-  
+  const cartProducts = useAppSeletor(getCartProduct);
+  const totalPrice = useAppSeletor(getTotalPrice);
+  const showCart = useAppSeletor(getCartStatus);
+  const dispatch = useAppDispatch();
 
-    const cartProducts = useAppSeletor(getCartProduct);
-    const totalPrice = useAppSeletor(getTotalPrice);
-    const show = useAppSeletor(getCartStatus);
-    const dispatch = useAppDispatch();
+  const handleRemoveFromCart = (productId: number) =>
+    dispatch(removeFromCart(productId));
+  // const closeChart=() => dispatch(OpenCart);
+  const handleOpenCart = (showornot: boolean) => {
+    dispatch(OpenCart(showornot));
+  };
 
-    const handleRemoveFromCart = (productId: number)=>dispatch(removeFromCart(productId));
-    // const closeChart=() => dispatch(OpenCart);
-    const handleOpenCart = (showornot:boolean)=>{dispatch(OpenCart(showornot))};
+  const cartContent = cartProducts.map((product) => (
+    <React.Fragment key={product.id}>
+      <Box
+        display="flex"
+        sx={{ pt: 2, pb: 2 }}
+        alignItems="start"
+        justifyContent={"space-between"}
+      >
+        <Avatar src={product.image} sx={{ width: 96, height: 96, mr: 2 }} />
+        <Box display="flex" flexDirection={"column"}>
+          <Typography variant="h6">{product.name}</Typography>
+          <Typography variant="subtitle2">{product.description}</Typography>
+        </Box>
+        <Typography variant="body1" justifyContent={"end"}>
+          ${product.price}
+        </Typography>
+        <Typography variant="body1" justifyContent={"end"}>{product.amount}</Typography>
+        <button onClick={() => handleRemoveFromCart(product.id)}>
+          {" "}
+          Remove{" "}
+        </button>
+      </Box>
+      <Divider variant="inset" />
+    </React.Fragment>
+  ));
 
-return(
-  <>
-  {console.log(getCartStatus)}
-    <Drawer
-     open={ show } 
-    onClose={() => handleOpenCart(show) }
-    anchor="right"
-    PaperProps={{
-
-        sx:{
-            width:500,
+  return (
+    <>
+      {/* {console.log(getCartStatus)} */}
+      <Drawer
+        open={showCart}
+        onClose={() => handleOpenCart(showCart)}
+        anchor="right"
+        PaperProps={{
+          sx: {
+            width: 500,
             background: Colors.light_gray,
-            borderRadius:0
-        }
-    }
-    }
-    >
-      
-    <h1>
-        My Cart 
-    </h1>
-    {/* {cartItems.length === 0 ? <p>No items in cart.</p> : null}
-      {cartItems.map(item => (
-        <CartItem
-          key={item.id}
-          item={item}
-          addToCart={addToCart}
-          removeFromCart={removeFromCart}
-        />
-      ))}
-      <h2>Total: ${calculateTotal(cartItems).toFixed(2)}</h2> */}
+            borderRadius: 0,
+          },
+        }}
+      >
+        {cartProducts.length === 0 ? (
+          <Box
+            sx={{ p: 4 }}
+            display="flex"
+            justifyContent={"center"}
+            flexDirection="column"
+            alignItems={"center"}
+          >
+            <Typography variant="h5" color={Colors.black}>
+              No items in cart.
+            </Typography>
+          </Box>
+        ) : (
+          <Box
+            sx={{ p: 4 }}
+            display="flex"
+            justifyContent={"center"}
+            flexDirection="column"
+            alignItems={"center"}
+          >
+            <Typography variant="h3" color={Colors.black}>
+              My Cart{" "}
+            </Typography>
+            <Typography variant="body1" color={Colors.muted}>
+              Please enjoy your shop with us!
+            </Typography>
 
-      <h5>{totalPrice}</h5>
-      {cartProducts.map(product=>(
-        <React.Fragment key={product.id}>
-        
-        <span>{product.name}</span>
-        <span>{product.amount}</span>
-        <button onClick={()=> handleRemoveFromCart(product.id)}> Remove </button>
-     
-        </React.Fragment>
-    
-      ))}
-  
-        </Drawer>
-        </>
-)
-  
-}
+            <Paper
+              elevation={0}
+              sx={{
+                mt: 2,
+                width: "90%",
+                padding: 4,
+              }}
+            >
+              {cartContent}
+            </Paper>
+
+            <Typography sx={{ mt: 4 }} variant="h5">Total: ${totalPrice}</Typography>
+
+            <Button sx={{ mt: 4 }} variant="contained">
+              Check Out
+            </Button>
+          </Box>
+        )}
+        <Button onClick={()=>handleOpenCart(showCart)}>CLOSE</Button>
+      </Drawer>
+    </>
+  );
+};
 export default Cart;

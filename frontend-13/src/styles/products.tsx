@@ -76,16 +76,15 @@ export const ProductMetaWrapper = styled(Box)(({theme}) => ({
   alignItems: "center",
 }));
 
-type ShowStack = {
-  shows: boolean,
-}
 
-export const ProductActionsWrapper = styled(Box)<ShowStack>(({ shows, theme }) => ({ 
+export const ProductActionsWrapper = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "show",
+})<ShowOptions>(({ show, theme }) => ({ 
   [theme.breakpoints.up("md")]: {
-    display: shows ? 'visible' : 'none',
+    display: show ? 'visible' : 'none',
     position: "absolute",
     right: 0,
     top: '20%',
-    animation: shows && `${slideInRight} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both`,
+    animation: show && `${slideInRight} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both`,
   }
 }));
