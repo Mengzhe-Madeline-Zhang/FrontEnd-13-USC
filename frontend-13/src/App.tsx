@@ -6,32 +6,31 @@ import NavBar from './Components/public/NavBar/NavBar';
 import { Typography, Link, Container } from "@mui/material";
 import { ThemeProvider } from "@mui/system";
 import theme from "./styles/theme";
+import ProductDetails from './Components/product_pages/product_detail';
 
 function App() {
 
   return (
     <>
-       <div>
-      <ThemeProvider theme={theme}>
-   <Container
-    sx={{
-      background: "#fff",
-    }}>
-    <NavBar/>
-
-
-    <BrowserRouter>
-            <Routes>
+      <div>
+        <ThemeProvider theme={theme}>
+          <Container
+            sx={{
+              background: "#fff",
+            }}>
+            <NavBar/>
+            <BrowserRouter>
+              <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path='/login' element={<SessionForm formType='login'/>} />
                 <Route path='/signup' element={<SessionForm formType='sign_up'/>} />
-            </Routes>
-        </BrowserRouter>
-
-    </Container>
-    </ThemeProvider>
-    </div>
-        </>
+                <Route path='/product-detail-test' element={<ProductDetails/>} />
+              </Routes>
+            </BrowserRouter>
+          </Container>
+        </ThemeProvider>
+      </div>
+    </>
   );
 }
 

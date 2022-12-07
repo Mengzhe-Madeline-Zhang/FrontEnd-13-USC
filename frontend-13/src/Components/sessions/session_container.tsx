@@ -6,7 +6,7 @@ import SessionForm from './session_form'
 const mSTP = (state:any) => {
     return {
         currentUser: state.session.user,
-        users: state.users.signUpStatus,
+        signUpStatus: state.users.signUpStatus,
         loginError: state.session.loginError,
         registerError: state.users.signUpError
     }

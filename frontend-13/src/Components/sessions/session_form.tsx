@@ -1,5 +1,4 @@
 import { Container, Typography, TextField, Button, Link, Box } from "@mui/material";
-import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 export type sessionEnum = "login" | "sign_up";
@@ -17,7 +16,10 @@ function SessionForm(props: any) {
   const [signUpErr, setSignUpErr] = useState(false);
 
   useEffect(() => {
-    console.log(props.loginError)
+    console.log(props.formType)
+    if(props.formType === "login") {
+      console.log(username);
+    }
   },[])
   
   
@@ -57,19 +59,17 @@ function SessionForm(props: any) {
     var reg = /^(?=.*\d)(?=.*[.!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{4,}$/;
     setValid(reg.test(e.target.value));
     setPassword(e.target.value);
-    console.log(password);
-    console.log(valid);
   };
 
   return (
-    <Container maxWidth="xs">
+    <Container className="login-container" maxWidth="xs">
 
       <Typography variant="h3" align="center">
         {props.formType === "login" ? "Login" : "Sign Up"}
       </Typography>
       <form onSubmit={submitHandler}>
         {props.formType === "login" ? (
-          <div>
+          <div className='login-labels-container'>
             <TextField
               onChange={(e) => setUsername(e.target.value)}
               variant="outlined"
@@ -89,7 +89,7 @@ function SessionForm(props: any) {
             />
           </div>
         ) : (
-          <div>
+          <div className='login-labels-container'>
             <TextField
               onChange={(e) => setUsername(e.target.value)}
               variant="outlined"
