@@ -7,16 +7,6 @@ import ProductCard from "./ProductCard";
 
 export default function Products() {
 
-  // interface Product{
-  //   id: number,
-  //   name: string,
-  //   price: number,
-  //   description: string,
-  //   image: string
-  // }
-  
-  // const[products, setProducts] = useState<Product[]>(data);
-
   const products = useSelector(getProductsSelector);
 
   const renderProducts = products.map((product) => (
@@ -37,20 +27,6 @@ export default function Products() {
       >
         {renderProducts}
       </Grid>
-
-      {/* <div>
-        <button onClick={()=>setProducts(prevProducts=>[
-          {
-            id: 10,
-            name: 'test',
-            price: 100,
-            description: 'testtest',
-            image: 'test'
-          }, ...prevProducts
-        ])}>
-          Add Product
-        </button>
-      </div> */}
     </Container>
   );
 }
