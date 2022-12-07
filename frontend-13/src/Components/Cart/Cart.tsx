@@ -12,14 +12,15 @@ import {
   getCartProduct,
   getTotalPrice,
   removeFromCart,
+  addToCart
 } from "../../Redux/cart.slice";
 import { OpenCart, getCartStatus } from "../../Redux/showcart.slice";
 import { useAppDispatch, useAppSeletor } from "../../Redux/store.hook";
 import { Colors } from "../../styles/theme";
-
+import {getProductsSelector, Product} from "../../Redux/product.slice"
+import { BannerShopButton } from "../../styles/banner";
 
 const Cart: React.FC = () => {
-
   const cartProducts = useAppSeletor(getCartProduct);
   const totalPrice = useAppSeletor(getTotalPrice);
   const showCart = useAppSeletor(getCartStatus);
@@ -32,28 +33,50 @@ const Cart: React.FC = () => {
     dispatch(OpenCart(showornot));
   };
 
+  const addToCartHander = (product: Product) => dispatch(addToCart(product)); 
+
   const cartContent = cartProducts.map((product) => (
     <React.Fragment key={product.id}>
+
       <Box
         display="flex"
         sx={{ pt: 2, pb: 2 }}
-        alignItems="start"
-        justifyContent={"space-between"}
-      >
+        alignItems="start">
         <Avatar src={product.image} sx={{ width: 96, height: 96, mr: 2 }} />
-        <Box display="flex" flexDirection={"column"}>
-          <Typography variant="h6">{product.name}</Typography>
-          <Typography variant="subtitle2">{product.description}</Typography>
+
+        <Box display="flex" 
+        justifyContent={"start"} flexDirection={"column"}
+        >
+<Box  >
+          <Typography variant="h6" display="inline" align="left" sx={{  pr: 5  }} >
+            {product.name}</Typography>
+          <Typography sx={{  pl: 5  }} variant="body1" display="inline">
+          ${product.price} </Typography>
         </Box>
-        <Typography variant="body1" justifyContent={"end"}>
-          ${product.price}
-        </Typography>
-        <Typography variant="body1" justifyContent={"end"}>{product.amount}</Typography>
-        <button onClick={() => handleRemoveFromCart(product.id)}>
-          {" "}
-          Remove{" "}
-        </button>
+
+          <Typography variant="subtitle2" color={Colors.dim_grey}>
+            {product.description}
+          </Typography>
+          <Box  display="flex"
+        sx={{ pt: 2, pb: 2 }}
+        alignItems="center"
+        justifyContent="center"
+        >
+      < BannerShopButton  sx={{ width: 40, height: 30 }} onClick={() => handleRemoveFromCart(product.id)}>
+          {" "} - {" "}
+        </BannerShopButton>
+
+        <Typography variant="body1" width={"50%"} textAlign="center"> {product.amount} </Typography>
+
+< BannerShopButton sx={{ width: 40, height: 30 }} onClick={() => addToCartHander(product)} color="primary">
+          {" "} + {" "} </BannerShopButton>
+       
       </Box>
+
+        </Box>
+      </Box>
+
+     
       <Divider variant="inset" />
     </React.Fragment>
   ));
@@ -111,14 +134,16 @@ const Cart: React.FC = () => {
               {cartContent}
             </Paper>
 
-            <Typography sx={{ mt: 4 }} variant="h5">Total: ${totalPrice}</Typography>
+            <Typography sx={{ mt: 4 }} variant="h5">
+              Total: ${totalPrice}
+            </Typography>
 
             <Button sx={{ mt: 4 }} variant="contained">
               Check Out
             </Button>
           </Box>
         )}
-        <Button onClick={()=>handleOpenCart(showCart)}>CLOSE</Button>
+        <Button onClick={() => handleOpenCart(showCart)}>CLOSE</Button>
       </Drawer>
     </>
   );
