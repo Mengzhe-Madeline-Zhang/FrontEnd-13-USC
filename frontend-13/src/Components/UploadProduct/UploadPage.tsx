@@ -22,7 +22,6 @@ const UploadPage: React.FC=()=>{
         prev => {
             (prev as any)[name] = value;
             const newValue = {...prev};
-            // var newValue = Object.assign(prev);
             return newValue;
         }
     )
