@@ -22,7 +22,7 @@ const UploadPage: React.FC=()=>{
         }
     )
 
-    const imageUploadHandler = (e) => {
+    const imageUploadHandler = (e: any) => {
         setProductImage(e.target.value);
     }
 
