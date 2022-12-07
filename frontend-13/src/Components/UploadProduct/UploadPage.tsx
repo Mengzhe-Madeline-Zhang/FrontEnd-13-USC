@@ -23,7 +23,9 @@ const UploadPage: React.FC=()=>{
     )
 
     const imageUploadHandler = (e: any) => {
-        setProductImage(e.target.value);
+        if (e.target.files) {
+            setProductImage(e.target.files[0]);
+        }
     }
 
     useEffect(() => {
@@ -39,19 +41,21 @@ const UploadPage: React.FC=()=>{
 
     const {id, name, price, description, image} = product;
 
-    return (<>
+    return (
+    <div className='product-upload-container'>
         <h2> Add Products  </h2>
-        <form onSubmit={handleSubmit}>
+        <form className='product-upload-form' onSubmit={handleSubmit}>
             <input type="number" placeholder="id" name="id" value={id} onChange={handleChange}/>
             <input type="text" placeholder="product name"  name="name" value={name} onChange={handleChange}/>
             <input type="number" placeholder="price" name="price" value={price} onChange={handleChange}/>
             <input type="text" placeholder="description" name="description" value={description} onChange={handleChange}/>
-            <input type="file" accept="image/*" placeholder="image" name="image" value={image} onChange={e => imageUploadHandler(e)}/>
-            <button type='submit'>Upload Products</button>
-
-
+            <div className='upload-picture-container'>
+                <p>Upload  Picture</p>
+                <input type="file" accept="image/*" placeholder="image" name="image" onChange={e => imageUploadHandler(e)}/>
+            </div>
+            <button className='upload-product-btn' type='submit'>Upload Products</button>
         </form>
-        </>
+    </div>
     )
 
 
