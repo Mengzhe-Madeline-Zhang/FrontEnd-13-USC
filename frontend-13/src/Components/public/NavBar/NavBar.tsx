@@ -10,7 +10,8 @@ import {
     Stack,
     Typography,
     Link,
-    Grid
+    Grid,
+    Badge
   } from "@mui/material";
   import {
     // AppbarActionIcons,
@@ -23,9 +24,17 @@ import {
   import FavoriteIcon from "@mui/icons-material/Favorite";
   import SearchIcon from "@mui/icons-material/Search";
   import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+  import { OpenCart, getCartStatus } from "../../../Redux/showcart.slice";
+  import { useAppDispatch, useAppSeletor } from "../../../Redux/store.hook";
+import { getCartItemAmount } from "../../../Redux/cart.slice";
 
 
 function NavBar(){
+  const dispatch = useAppDispatch();
+  const show = useAppSeletor(getCartStatus);
+  const handleOpenCart = (showornot:boolean)=>{dispatch(OpenCart(showornot))};
+  const ItemAmount = useAppSeletor(getCartItemAmount);
+ 
 // const theme = useTheme();
 
 return(
@@ -65,6 +74,8 @@ return(
           sx={{
             justifyContent: "center",
           }}
+          onClick={()=>handleOpenCart(show)}
+          
         >
           <ListItemIcon
             sx={{
@@ -73,7 +84,9 @@ return(
               color: Colors.secondary,
             }}
           >
+            <Badge color="secondary" badgeContent={ItemAmount}>
             <ShoppingCartIcon />
+            </Badge>
           </ListItemIcon>
         </ListItem >
         <Divider orientation="vertical" flexItem />

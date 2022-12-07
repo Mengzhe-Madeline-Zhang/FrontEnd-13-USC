@@ -8,7 +8,11 @@ import { ThemeProvider } from "@mui/system";
 import theme from "./styles/theme";
 import ProductDetails from './Components/product_pages/product_detail';
 
+
+
 function App() {
+
+
 
   return (
     <>
