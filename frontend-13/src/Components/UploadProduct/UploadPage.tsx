@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { addProduct, Product } from '../../Redux/product.slice';
 import { useAppDispatch } from '../../Redux/store.hook';
 
@@ -12,6 +12,8 @@ const UploadPage: React.FC=()=>{
             description: '',
             image: ''
     })
+    const [productImage, setProductImage] = useState(null);
+    const [imageURL, setImageURL] = useState("")
     const handleChange = ({target:{name,value}}: React.ChangeEvent<HTMLInputElement>) => setProduct(
         prev => {
             (prev as any)[name] = value;
@@ -19,6 +21,16 @@ const UploadPage: React.FC=()=>{
             return newValue;
         }
     )
+
+    const imageUploadHandler = (e) => {
+        setProductImage(e.target.value);
+    }
+
+    useEffect(() => {
+        if (productImage) {
+            setImageURL(URL.createObjectURL(productImage));
+        }
+    },[productImage])
 
     const handleSubmit =(e: React.FormEvent)=>{
         e.preventDefault();
@@ -34,7 +46,7 @@ const UploadPage: React.FC=()=>{
             <input type="text" placeholder="product name"  name="name" value={name} onChange={handleChange}/>
             <input type="number" placeholder="price" name="price" value={price} onChange={handleChange}/>
             <input type="text" placeholder="description" name="description" value={description} onChange={handleChange}/>
-            <input type="text" placeholder="img url" name="image" value={image} onChange={handleChange}/>
+            <input type="file" accept="image/*" placeholder="image" name="image" value={image} onChange={e => imageUploadHandler(e)}/>
             <button type='submit'>Upload Products</button>
 
 
