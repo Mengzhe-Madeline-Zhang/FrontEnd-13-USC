@@ -13,17 +13,17 @@ import ShareIcon from "@mui/icons-material/Share";
 import FitScreenIcon from "@mui/icons-material/FitScreen";
 import { Stack, Tooltip, Typography } from "@mui/material";
 import { addToCart } from "../../Redux/cart.slice";
-import {useAppDispatch} from '../../Redux/store.hook';
-import {getProductsSelector, Product} from "../../Redux/product.slice"
+import {useAppDispatch, useAppSeletor} from '../../Redux/store.hook';
+import {getProductsSelector, Product} from "../../Redux/product.slice";
+import { OpenDetail, getDetailStatus } from "../../Redux/showdetailpage.slice";
+import ProductDetails from "../product_pages/product_detail";
 
-export default function ProductCard(
-
-  product:Product
-  ) {
+export default function ProductCard( product:Product ) {
 
   const [showOptions, setShowOptions] = useState(false);
-
   const dispatch = useAppDispatch();
+  const handleOpenDetail = (showornot:boolean)=>{dispatch(OpenDetail(showornot))};
+  const show = useAppSeletor( getDetailStatus);
 
   const handleMouseEnter = () => {
     setShowOptions(true);
@@ -33,7 +33,6 @@ export default function ProductCard(
   };
 
  const addToCartHander = (product: Product) => dispatch(addToCart(product)); 
-
   return (
     <>
 
@@ -55,12 +54,18 @@ export default function ProductCard(
                 <ShareIcon color="primary" />
               </Tooltip>
             </ProductActionButton>
+
+
             <ProductActionButton 
             // onClick={() => showProductDetailDialog()}
+            onClick={()=>handleOpenDetail(show)}
             >
+
               <Tooltip placement="left" title="Full view">
                 <FitScreenIcon color="primary" />
               </Tooltip>
+
+
             </ProductActionButton>
           </Stack>
         </ProductActionsWrapper>
@@ -74,8 +79,8 @@ export default function ProductCard(
           ${product.price}
         </Typography>
         </ProductMetaWrapper>
-
-      {/* <ProductDetailDialog product={product} /> */}
+      
+        {/* <ProductDetails product={product} show={show}/> */}
 
     </>
   );

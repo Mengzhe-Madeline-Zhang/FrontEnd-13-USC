@@ -1,18 +1,63 @@
 import Comment from './product_comments';
 import Button from '@mui/material/Button';
-export default function ProductDetails(props: any) {
+import {Product}from '../../Redux/product.slice';
+import { Dialog, IconButton, Box} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+
+import { OpenDetail, getDetailStatus } from "../../Redux/showdetailpage.slice";
+import { useAppDispatch, useAppSeletor } from "../../Redux/store.hook";
+
+type DetailPropsType={
+    product:Product,
+    show: boolean
+}
+
+export default function ProductDetails(props: any
+    // {product,show}: DetailPropsType
+    ) {
+
+    const showDetail = useAppSeletor(getDetailStatus);
+  const dispatch = useAppDispatch();
+
+    const handleOpenCart = (showornot: boolean) => {
+        dispatch(OpenDetail(showornot));
+      };
 
     const reviewSubmitHandler = () => {
 
     }
     return (
+        <>
+        {/* <Dialog
+        open={show}
+        fullScreen
+        > */}
+            
+<Box
+  m={1}
+ //margin
+  display="flex"
+  justifyContent="flex-end"
+  alignItems="flex-end"
+  
+>
+            <IconButton  onClick={() => handleOpenCart(showDetail)}>
+            <CloseIcon />
+          </IconButton>
+          </Box>
+
         <div className='product-detail-page'>
             <div className='product-detail-container'>
                 <div className='product-detail-thumbnail'>
-                    <img src="/images/bag_01.png" alt="" />
+                    <img 
+                    src="/images/bag_01.png"
+                    // {product.image} 
+                    alt="" />
                 </div>
                 <div className='product-details'>
-                    <div className='product-detail-title-container'><p className='product-detail-title'>Big Pink Bag</p></div>
+                    <div className='product-detail-title-container'><p className='product-detail-title'>Big Pink Bag
+                        {/* {product.name} */}
+                        </p></div>
                     <div className='product-details-description-flex'>
                         <div className='product-detail-description-container'>
                             <p className='product-detail-description'>
@@ -20,7 +65,9 @@ export default function ProductDetails(props: any) {
                             </p>   
                         </div>
                         <div className='product-detail-price-container'>
-                            <p className='product-detail-price'>Price: $299.99</p>    
+                            <p className='product-detail-price'>Price: $299.99
+                            {/* {product.price} */}
+                            </p>    
                         </div>
                     </div>
                     <div>
@@ -45,5 +92,7 @@ export default function ProductDetails(props: any) {
             </div>
             <div className='product-detail-footer'></div>
         </div>
+        {/* </Dialog> */}
+        </>
     )
 }

@@ -17,7 +17,7 @@ import {
 import { OpenCart, getCartStatus } from "../../Redux/showcart.slice";
 import { useAppDispatch, useAppSeletor } from "../../Redux/store.hook";
 import { Colors } from "../../styles/theme";
-import {getProductsSelector, Product} from "../../Redux/product.slice"
+import { Product} from "../../Redux/product.slice"
 import { BannerShopButton } from "../../styles/banner";
 
 const Cart: React.FC = () => {

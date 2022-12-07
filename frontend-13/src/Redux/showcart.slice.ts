@@ -1,10 +1,6 @@
 import { RootState } from './store';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-// export type Show {
-//   showCart: boolean;
-// }
-
 const initialState: boolean = false;
 
 const showCartSlice = createSlice({
@@ -12,9 +8,7 @@ const showCartSlice = createSlice({
     initialState,
     reducers:{
         OpenCart:(state, action: PayloadAction<boolean>)=>{
-            // return [action.payload, ...state]
             return state=!action.payload;
-            // state.push(action.payload)
         }
     }
 })

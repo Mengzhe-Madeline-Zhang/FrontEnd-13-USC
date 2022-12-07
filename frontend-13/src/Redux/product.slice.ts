@@ -17,8 +17,8 @@ const productSlice = createSlice({
     initialState,
     reducers:{
         addProduct:(state, action: PayloadAction<Product>)=>{
-            // return [action.payload, ...state]
-            state.push(action.payload)
+            return [ ...state, action.payload]
+            // state.push(action.payload)
         }
 
     }
