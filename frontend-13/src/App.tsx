@@ -28,7 +28,8 @@ function App() {
                 <Route path="/" element={<Home/>} />
                 <Route path='/login' element={<SessionForm formType='login'/>} />
                 <Route path='/signup' element={<SessionForm formType='sign_up'/>} />
-                <Route path='/product-detail-test' element={<ProductDetails/>} />
+                {/* <Route path='/product-detail-test' element={<ProductDetails/>} /> */}
+                {/* <Route path='/:id' element={<ProductDetails/>} /> */}
               </Routes>
             </BrowserRouter>
           </Container>

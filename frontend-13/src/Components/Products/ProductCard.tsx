@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   ProductBox,
   ProductImage,
@@ -17,6 +17,7 @@ import {useAppDispatch, useAppSeletor} from '../../Redux/store.hook';
 import {getProductsSelector, Product} from "../../Redux/product.slice";
 import { OpenDetail, getDetailStatus } from "../../Redux/showdetailpage.slice";
 import ProductDetails from "../product_pages/product_detail";
+import {Link} from 'react-router-dom';
 
 export default function ProductCard( product:Product ) {
 
@@ -25,6 +26,7 @@ export default function ProductCard( product:Product ) {
   const handleOpenDetail = (showornot:boolean)=>{dispatch(OpenDetail(showornot))};
   const show = useAppSeletor( getDetailStatus);
 
+
   const handleMouseEnter = () => {
     setShowOptions(true);
   };
@@ -32,7 +34,26 @@ export default function ProductCard( product:Product ) {
     setShowOptions(false);
   };
 
- const addToCartHander = (product: Product) => dispatch(addToCart(product)); 
+const addToCartHander = (product: Product) => dispatch(addToCart(product)); 
+// const [detailProduct, setDetailProduct] = useState<Product>({
+//   id: 0,
+//   name: '',
+//   price: 0,
+//   description: '',
+//   image: ''
+// }
+// );
+
+// useEffect(() => {
+//   setDetailProduct(
+//     prevProduct=>(
+//       {
+//         ...prevProduct,
+//         ...product
+//       }
+//     )
+// )}, []);
+
   return (
     <>
 
@@ -57,13 +78,14 @@ export default function ProductCard( product:Product ) {
 
 
             <ProductActionButton 
-            // onClick={() => showProductDetailDialog()}
-            onClick={()=>handleOpenDetail(show)}
-            >
-
+            onClick={()=>{handleOpenDetail(show);}}>
+        
               <Tooltip placement="left" title="Full view">
+              {/* <Link to={'/${product.id}'}> */}
                 <FitScreenIcon color="primary" />
+                {/* </Link> */}
               </Tooltip>
+              
 
 
             </ProductActionButton>
@@ -79,8 +101,9 @@ export default function ProductCard( product:Product ) {
           ${product.price}
         </Typography>
         </ProductMetaWrapper>
+    
       
-        {/* <ProductDetails product={product} show={show}/> */}
+        <ProductDetails/>
 
     </>
   );

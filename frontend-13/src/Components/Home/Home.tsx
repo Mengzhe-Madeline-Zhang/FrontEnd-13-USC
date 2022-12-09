@@ -29,7 +29,7 @@ function Home() {
               <Typography variant="h4">Trending Products</Typography>
             </Box>
       <Products/>
-      <UploadPage/>
+      {/* <UploadPage/> */}
       <Footer/>
       <Cart/>
     </div>

@@ -3,17 +3,17 @@ import Button from '@mui/material/Button';
 import {Product}from '../../Redux/product.slice';
 import { Dialog, IconButton, Box} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-
+import { useState, useEffect } from "react";
 import { OpenDetail, getDetailStatus } from "../../Redux/showdetailpage.slice";
 import { useAppDispatch, useAppSeletor } from "../../Redux/store.hook";
 
-type DetailPropsType={
-    product:Product,
-    show: boolean
-}
+// type DetailPropsType={
+//     product:Product,
+// }
 
-export default function ProductDetails(props: any
-    // {product,show}: DetailPropsType
+export default function ProductDetails(
+    props: any
+    // detail: Product
     ) {
 
     const showDetail = useAppSeletor(getDetailStatus);
@@ -26,12 +26,14 @@ export default function ProductDetails(props: any
     const reviewSubmitHandler = () => {
 
     }
+
+
     return (
         <>
-        {/* <Dialog
-        open={show}
+        <Dialog
+        open={showDetail}
         fullScreen
-        > */}
+        >
             
 <Box
   m={1}
@@ -56,7 +58,7 @@ export default function ProductDetails(props: any
                 </div>
                 <div className='product-details'>
                     <div className='product-detail-title-container'><p className='product-detail-title'>Big Pink Bag
-                        {/* {product.name} */}
+              
                         </p></div>
                     <div className='product-details-description-flex'>
                         <div className='product-detail-description-container'>
@@ -92,7 +94,7 @@ export default function ProductDetails(props: any
             </div>
             <div className='product-detail-footer'></div>
         </div>
-        {/* </Dialog> */}
+        </Dialog>
         </>
     )
 }

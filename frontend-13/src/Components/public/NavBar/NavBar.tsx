@@ -11,7 +11,10 @@ import {
     Typography,
     Link,
     Grid,
-    Badge
+    Badge,
+    Menu,
+    MenuItem,
+    Button,
   } from "@mui/material";
   import {
     // AppbarActionIcons,
@@ -27,6 +30,8 @@ import {
   import { OpenCart, getCartStatus } from "../../../Redux/showcart.slice";
   import { useAppDispatch, useAppSeletor } from "../../../Redux/store.hook";
 import { getCartItemAmount } from "../../../Redux/cart.slice";
+import {useState, MouseEvent} from 'react';
+import UploadPage from "../../UploadProduct/UploadPage";
 
 
 function NavBar(){
@@ -35,42 +40,59 @@ function NavBar(){
   const handleOpenCart = (showornot:boolean)=>{dispatch(OpenCart(showornot))};
   const ItemAmount = useAppSeletor(getCartItemAmount);
  
-// const theme = useTheme();
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleMenu = (event: MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+const [showUploadPage, setShowUploadPage] = useState(false);
 
 return(
+  <>
 <AppbarContainer>
       <AppbarHeader variant="h4">Happy Shop</AppbarHeader>
       <MyList >
-     
+    
+      
       <ListItem button component="a" href="/" >
         <ListItemText secondary="Home"/>
         </ListItem>
+       
 
+       
         <ListItem button component="a" href="/" >
         <ListItemText secondary="Categories" />
         </ListItem>
-
+       
         <ListItem button component="a" href="/">
-        <ListItemText secondary="Products" />
+        <ListItemText secondary="Products" />   
         </ListItem>
+
 
         <ListItem button component="a" href="/">
         <ListItemText secondary="About us" />
         </ListItem>
+       
 
         {/* <ListItem button component="a" href="/">
         <ListItemText secondary="Contact us" />
         </ListItem>
      */}
         {/* <ListItemButton onClick={() => setShowSearchBox(true)}> */}
+       
     
         <ListItem button>
           <ListItemIcon>
             <SearchIcon />
           </ListItemIcon>
-        </ListItem>
+         </ListItem>
+         <Divider orientation="vertical" flexItem />
 
-        <ListItem button
+        < ListItem button
           sx={{
             justifyContent: "center",
           }}
@@ -91,7 +113,7 @@ return(
         </ListItem >
         <Divider orientation="vertical" flexItem />
 
-        <ListItem button
+        <ListItem button          
           sx={{
             justifyContent: "center",
           }}
@@ -108,29 +130,51 @@ return(
         </ListItem>
         <Divider orientation="vertical" flexItem />
 
-        <ListItem button component="a" href="/login"
+        <ListItem button
+        // component="a" href="/login"
           sx={{
             justifyContent: "center",
           }}
+   
         >
-        
+        <Button
+               onClick={handleMenu}
+               aria-controls={open ? 'basic-menu' : undefined}
+               aria-haspopup="true"
+               aria-expanded={open ? 'true' : undefined}
+        >
           <ListItemIcon
             sx={{
               display: "flex",
               justifyContent: "center",
               color: Colors.secondary,
             }}
+        
           >
             <PersonIcon />
           </ListItemIcon>
-       
-        </ListItem>
+          </Button>
+          </ListItem>
+        <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem onClick={handleClose} component="a" href="/login">My account</MenuItem>
+        <MenuItem onClick={()=>{handleClose();
+        setShowUploadPage(true)}}>Upload Product</MenuItem>
+      </Menu>
 
         <Divider orientation="vertical" flexItem />
      
           </MyList>
        
     </AppbarContainer>
+    <UploadPage show={showUploadPage} handleShow={setShowUploadPage}/>
+    </>
 );
 
 }
