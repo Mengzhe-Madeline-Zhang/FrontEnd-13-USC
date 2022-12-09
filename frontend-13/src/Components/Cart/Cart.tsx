@@ -57,8 +57,9 @@ const Cart: React.FC = () => {
           <Typography variant="subtitle2" color={Colors.dim_grey}>
             {product.description}
           </Typography>
-          <Box  display="flex"
-        sx={{ pt: 2, pb: 2 }}
+          <Box  
+          display="flex"
+        sx={{ pt: 2, pb: 2,}}
         alignItems="center"
         justifyContent="center"
         >

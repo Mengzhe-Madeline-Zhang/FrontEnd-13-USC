@@ -3,12 +3,7 @@ import { addProduct, Product } from "../../Redux/product.slice";
 import { useAppDispatch } from "../../Redux/store.hook";
 import {
   Typography,
-  Link,
-  Container,
   Box,
-  TextField,
-  Button,
-  Grid,
   Dialog,
   IconButton,
 } from "@mui/material";
@@ -57,7 +52,6 @@ export default function UploadPage(prop:Props){
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     product.image = imageURL;
-
     // dispatch(addProduct(product));
     dispatch(addProduct({ ...product }));
   };
