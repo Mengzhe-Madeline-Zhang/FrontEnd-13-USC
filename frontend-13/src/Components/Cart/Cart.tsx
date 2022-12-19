@@ -8,84 +8,82 @@ import {
   Button,
 } from "@mui/material";
 import React from "react";
-import {
-  getCartProduct,
-  getTotalPrice,
-  removeFromCart,
-  addToCart
-} from "../../Redux/cart.slice";
-import { OpenCart, getCartStatus } from "../../Redux/showcart.slice";
-import { useAppDispatch, useAppSeletor } from "../../Redux/store.hook";
+// import {
+//   getCartProduct,
+//   getTotalPrice,
+//   removeFromCart,
+//   addToCart
+// } from "../../Redux/cart.slice";
+// import { OpenCart, getCartStatus } from "../../Redux/showcart.slice";
+// import { useAppDispatch, useAppSeletor } from "../../Redux/store.hook";
 import { Colors } from "../../styles/theme";
-import { Product} from "../../Redux/product.slice"
-import { BannerShopButton } from "../../styles/banner";
+// import { Product} from "../../Redux/product.slice"
+// import { BannerShopButton } from "../../styles/banner";
 
 const Cart: React.FC = () => {
-  const cartProducts = useAppSeletor(getCartProduct);
-  const totalPrice = useAppSeletor(getTotalPrice);
-  const showCart = useAppSeletor(getCartStatus);
-  const dispatch = useAppDispatch();
+  // const cartProducts = useAppSeletor(getCartProduct);
+  // const totalPrice = useAppSeletor(getTotalPrice);
+  // const showCart = useAppSeletor(getCartStatus);
+  // const dispatch = useAppDispatch();
 
-  const handleRemoveFromCart = (productId: number) =>
-    dispatch(removeFromCart(productId));
-  // const closeChart=() => dispatch(OpenCart);
-  const handleOpenCart = (showornot: boolean) => {
-    dispatch(OpenCart(showornot));
-  };
+  // const handleRemoveFromCart = (productId: number) =>
+  //   dispatch(removeFromCart(productId));
+  // const handleOpenCart = (showornot: boolean) => {
+  //   dispatch(OpenCart(showornot));
+  // };
 
-  const addToCartHander = (product: Product) => dispatch(addToCart(product)); 
+  // const addToCartHander = (product: Product) => dispatch(addToCart(product)); 
 
-  const cartContent = cartProducts.map((product) => (
-    <React.Fragment key={product.id}>
+//   const cartContent = cartProducts.map((product) => (
+//     <React.Fragment key={product.id}>
 
-      <Box
-        display="flex"
-        sx={{ pt: 2, pb: 2 }}
-        alignItems="start">
-        <Avatar src={product.image} sx={{ width: 96, height: 96, mr: 2 }} />
+//       <Box
+//         display="flex"
+//         sx={{ pt: 2, pb: 2 }}
+//         alignItems="start">
+//         <Avatar src={product.image} sx={{ width: 96, height: 96, mr: 2 }} />
 
-        <Box display="flex" 
-        justifyContent={"start"} flexDirection={"column"}
-        >
-<Box  >
-          <Typography variant="h6" display="inline" align="left" sx={{  pr: 5  }} >
-            {product.name}</Typography>
-          <Typography sx={{  pl: 5  }} variant="body1" display="inline">
-          ${product.price} </Typography>
-        </Box>
+//         <Box display="flex" 
+//         justifyContent={"start"} flexDirection={"column"}
+//         >
+// <Box  >
+//           <Typography variant="h6" display="inline" align="left" sx={{  pr: 5  }} >
+//             {product.name}</Typography>
+//           <Typography sx={{  pl: 5  }} variant="body1" display="inline">
+//           ${product.price} </Typography>
+//         </Box>
 
-          <Typography variant="subtitle2" color={Colors.dim_grey}>
-            {product.description}
-          </Typography>
-          <Box  
-          display="flex"
-        sx={{ pt: 2, pb: 2,}}
-        alignItems="center"
-        justifyContent="center"
-        >
-      < BannerShopButton  sx={{ width: 40, height: 30 }} onClick={() => handleRemoveFromCart(product.id)}>
-          {" "} - {" "}
-        </BannerShopButton>
+//           <Typography variant="subtitle2" color={Colors.dim_grey}>
+//             {product.description}
+//           </Typography>
+//           <Box  
+//           display="flex"
+//         sx={{ pt: 2, pb: 2,}}
+//         alignItems="center"
+//         justifyContent="center"
+//         >
+//       < BannerShopButton  sx={{ width: 40, height: 30 }} onClick={() => handleRemoveFromCart(product.id)}>
+//           {" "} - {" "}
+//         </BannerShopButton>
 
-        <Typography variant="body1" width={"50%"} textAlign="center"> {product.amount} </Typography>
+//         <Typography variant="body1" width={"50%"} textAlign="center"> {product.amount} </Typography>
 
-< BannerShopButton sx={{ width: 40, height: 30 }} onClick={() => addToCartHander(product)} color="primary">
-          {" "} + {" "} </BannerShopButton>
+// < BannerShopButton sx={{ width: 40, height: 30 }} onClick={() => addToCartHander(product)} color="primary">
+//           {" "} + {" "} </BannerShopButton>
        
-      </Box>
+//       </Box>
 
-        </Box>
-      </Box>
+//         </Box>
+//       </Box>
 
      
-      <Divider variant="inset" />
-    </React.Fragment>
-  ));
+//       <Divider variant="inset" />
+//     </React.Fragment>
+//   ));
 
   return (
     <>
-      {/* {console.log(getCartStatus)} */}
-      <Drawer
+      {/* <Drawer
         open={showCart}
         onClose={() => handleOpenCart(showCart)}
         anchor="right"
@@ -96,19 +94,24 @@ const Cart: React.FC = () => {
             borderRadius: 0,
           },
         }}
+
       >
-        {cartProducts.length === 0 ? (
-          <Box
+
+       {cartProducts.length === 0 ? (
+
+      <Box
             sx={{ p: 4 }}
             display="flex"
             justifyContent={"center"}
             flexDirection="column"
             alignItems={"center"}
-          >
+    >
+
             <Typography variant="h5" color={Colors.black}>
               No items in cart.
             </Typography>
-          </Box>
+        </Box>
+
         ) : (
           <Box
             sx={{ p: 4 }}
@@ -145,7 +148,7 @@ const Cart: React.FC = () => {
           </Box>
         )}
         <Button onClick={() => handleOpenCart(showCart)}>CLOSE</Button>
-      </Drawer>
+     </Drawer> */}
     </>
   );
 };

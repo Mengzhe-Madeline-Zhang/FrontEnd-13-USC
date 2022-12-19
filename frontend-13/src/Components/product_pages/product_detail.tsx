@@ -1,38 +1,41 @@
 import Comment from "./product_comments";
 import Button from "@mui/material/Button";
-import { Product } from "../../Redux/product.slice";
+// import { Product } from "../../Redux/product.slice";
 import { Dialog, IconButton, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useAppDispatch, useAppSeletor } from "../../Redux/store.hook";
-import { useParams } from "react-router-dom";
-import { getProductsSelector } from "../../Redux/product.slice";
-import { useSelector } from "react-redux";
-import { addToCart } from "../../Redux/cart.slice";
+// import { useAppDispatch, useAppSeletor } from "../../Redux/store.hook";
+// import { useParams } from "react-router-dom";
+// import { getProductsSelector } from "../../Redux/product.slice";
+// import { useSelector } from "react-redux";
+// import { addToCart } from "../../Redux/cart.slice";
 
-type DetailPropsType={
-    product:Product,
-    show: boolean,
-    setShow: Function
-}
+// type DetailPropsType={
+//     product:Product,
+//     show: boolean,
+//     setShow: Function
+// }
 
 export default function ProductDetails(
-    {product, show, setShow}: DetailPropsType
+    // {product, show, setShow}: DetailPropsType
 ) {
 
-  const handleOpenCart = (showornot: boolean) => {
-    setShow(!showornot);
-  };
+  // const handleOpenCart = (showornot: boolean) => {
+  //   setShow(!showornot);
+  // };
   const reviewSubmitHandler = () => {};
 
 //   const allproducts = useSelector(getProductsSelector);
 //   const { productId } = useParams();
   // const detail = allproducts.find(prod=> prod.id ===productId);
-  const addToCartHander = (product: Product) => dispatch(addToCart(product)); 
-  const dispatch = useAppDispatch();
+  // const addToCartHander = (product: Product) => dispatch(addToCart(product)); 
+  // const dispatch = useAppDispatch();
 
   return (
     <>
-      <Dialog open={show} fullScreen>
+      <Dialog 
+      open={false} 
+      // open={show} 
+      fullScreen>
         <Box
           m={1}
           //margin
@@ -40,22 +43,22 @@ export default function ProductDetails(
           justifyContent="flex-end"
           alignItems="flex-end"
         >
-          <IconButton onClick={() => handleOpenCart(show)}>
+          {/* <IconButton onClick={() => handleOpenCart(show)}>
             <CloseIcon />
-          </IconButton>
+          </IconButton> */}
         </Box>
 
         <div className="product-detail-page">
           <div className="product-detail-container">
             <div className="product-detail-thumbnail">
               <img
-                src={product.image}
+                // src={product.image}
                 alt=""
               />
             </div>
             <div className="product-details">
               <div className="product-detail-title-container">
-                <p className="product-detail-title">{product.name}</p>
+                {/* <p className="product-detail-title">{product.name}</p> */}
               </div>
               <div className="product-details-description-flex">
                 <div className="product-detail-description-container">
@@ -71,12 +74,14 @@ export default function ProductDetails(
                 <div className="product-detail-price-container">
                   <p className="product-detail-price">
                 
-                    {product.price}
+                    {/* {product.price} */}
                   </p>
                 </div>
               </div>
               <div>
-                <Button variant="contained" sx={{ marginRight: "0.2rem" }} onClick={()=>addToCartHander(product)}>
+                <Button variant="contained" sx={{ marginRight: "0.2rem" }}
+                //  onClick={()=>addToCartHander(product)}
+                >
                   Add to Cart
                 </Button>
                 <Button sx={{ marginLeft: "0.2rem" }} variant="contained">

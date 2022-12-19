@@ -30,7 +30,7 @@ function Home() {
             </Box>
       <Products/>
       <Footer/>
-      <Cart/>
+      {/* <Cart/> */}
     </div>
   );
 }

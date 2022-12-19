@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider, ReactReduxContext, connect } from 'react-redux';
 import configureStore from './store/store';
-import store from './Redux/store';
+// import store from './Redux/store';
 import { compose } from 'redux';
 
 
@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 );
 
 const store1 = configureStore();
-const store2 = store;
+// const store2 = store;
 
 // export interface store2Type{
 //   products: [];
@@ -30,7 +30,8 @@ const store2 = store;
 
 root.render(
   // <React.StrictMode>
-  <Provider store={store2} >
+  <Provider store={store1} >
+  {/* <Provider store={store2} > */}
  {/* <Provider store={store2} context={store2Context}> */}
 {/* </Provider><Provider store={store2}>  */}
   {/* <Provider store={store2} context={store2Context}>  */}

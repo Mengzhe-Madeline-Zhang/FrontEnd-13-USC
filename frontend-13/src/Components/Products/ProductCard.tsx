@@ -12,17 +12,19 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import FitScreenIcon from "@mui/icons-material/FitScreen";
 import { Stack, Tooltip, Typography, } from "@mui/material";
-import { addToCart } from "../../Redux/cart.slice";
-import {useAppDispatch, useAppSeletor} from '../../Redux/store.hook';
-import {getProductsSelector, Product} from "../../Redux/product.slice";
-import { OpenDetail, getDetailStatus } from "../../Redux/showdetailpage.slice";
+// import { addToCart } from "../../Redux/cart.slice";
+// import {useAppDispatch, useAppSeletor} from '../../Redux/store.hook';
+// import {getProductsSelector, Product} from "../../Redux/product.slice";
+// import { OpenDetail, getDetailStatus } from "../../Redux/showdetailpage.slice";
 import ProductDetails from "../product_pages/product_detail";
 import {useNavigate} from 'react-router-dom';
 
-export default function ProductCard( product:Product ) {
+export default function ProductCard( 
+  // product:Product
+   ) {
 
   const [showOptions, setShowOptions] = useState(false);
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const [show, setShow] = useState(false);
   const handleOpenDetail = (showornot:boolean)=>{setShow(showornot)};
 
@@ -34,20 +36,23 @@ const handleMouseEnter = () => {
     setShowOptions(false);
   };
 
-const addToCartHander = (product: Product) => dispatch(addToCart(product)); ;
+// const addToCartHander = (product: Product) => dispatch(addToCart(product)); 
 const navigate = useNavigate();
 
   return (
     <>
 
       <ProductBox onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <ProductImage src={product.image} />
+        <ProductImage 
+        // src={product.image}
+         />
         <ProductFavButton isfav={0}>
           <FavoriteIcon />
         </ProductFavButton>
         {showOptions ? (
           <ProductAddToCart show={showOptions} variant="contained"
-          onClick={()=>addToCartHander(product)}>
+          // onClick={()=>addToCartHander(product)}
+          >
             Add to cart
           </ProductAddToCart>
         ): undefined}
@@ -62,14 +67,11 @@ const navigate = useNavigate();
 
             <ProductActionButton 
             onClick={()=>{handleOpenDetail(true);
-            // navigate("/products/${product.id}")
           }
             }>
         
               <Tooltip placement="left" title="Full view">
-              {/* <navigate to={'/products/${product.id}'}> */}
                 <FitScreenIcon color="primary" />
-                {/* </navigate> */}
               </Tooltip>
               
 
@@ -81,15 +83,15 @@ const navigate = useNavigate();
       </ProductBox>
       <ProductMetaWrapper>
         <Typography variant={"h6"} lineHeight={2}>
-          {product.name}
+          {/* {product.name} */}
         </Typography>
         <Typography variant={"caption"}>
-          ${product.price}
+          {/* ${product.price} */}
         </Typography>
         </ProductMetaWrapper>
     
       
-        <ProductDetails product={product} show={show} setShow={setShow}/>
+        {/* <ProductDetails product={product} show={show} setShow={setShow}/> */}
 
     </>
   );

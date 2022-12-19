@@ -1,4 +1,10 @@
-import { Container, Typography, TextField, Button, Link, Box } from "@mui/material";
+import { Container, Typography, TextField, Button, Link, Box, Grid, Paper, Avatar, FormControlLabel } from "@mui/material";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import {Colors} from "../../styles/theme"
+import {
+  BannerShopButton,
+} from "../../styles/banner";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 export type sessionEnum = "login" | "sign_up";
@@ -61,12 +67,30 @@ function SessionForm(props: any) {
     setPassword(e.target.value);
   };
 
+
+  const paperStyle={padding :20,height:'80vh',width:500, margin:"50px auto"}
+  const avatarStyle={backgroundColor: Colors.secondary}
+  // const btnstyle={margin:'8px 0'}
+
   return (
+    <Grid>
+      <Paper elevation={10} style={paperStyle}>
     <Container className="login-container" maxWidth="xs">
 
-      <Typography variant="h3" align="center">
+    <Grid  container
+  direction="column"
+  justifyContent="center"
+  alignItems="center">
+
+     <Avatar style={avatarStyle}>
+     {props.formType === "login" ? <LockOutlinedIcon/> : <AddCircleOutlineOutlinedIcon/>}
+      </Avatar>
+    
+      <Typography variant="h3" align="center" sx={{mt:2}}>
+     
         {props.formType === "login" ? "Login" : "Sign Up"}
       </Typography>
+      
       <form onSubmit={submitHandler}>
         {props.formType === "login" ? (
           <div className='login-labels-container'>
@@ -125,23 +149,26 @@ function SessionForm(props: any) {
         )}
         {props.formType === "login" ? (
           <Container>
-            <Button type="submit" fullWidth variant="contained" color="primary">
+            <BannerShopButton type="submit" fullWidth variant="contained" color="primary">
               Login
-            </Button>
-            <Typography variant="h6">New here?</Typography>
-            <Link variant="h6" href="/signup">
+            </BannerShopButton>
+            <Typography variant='subtitle1'> New here? {'\u00A0'}
+            <Link href="/signup">
               Please Sign up!
             </Link>
+            </Typography>
+          
           </Container>
         ) : (
           <Container>
-            <Button type="submit" fullWidth variant="contained" color="primary">
+            <BannerShopButton type="submit" fullWidth variant="contained" color="primary">
               Sign Up
-            </Button>
-            <Typography variant="h6" >Aleady have account?</Typography>
-            <Link variant="h6" href="/login">
-              Please Sign in here!
-            </Link>
+            </BannerShopButton>
+            <Typography variant='subtitle1' >Aleady have account? {'\u00A0'} 
+            <Link  href="/login">
+              Please Sign in!
+            </Link></Typography>
+           
           </Container>
         )}
         {
@@ -154,8 +181,10 @@ function SessionForm(props: any) {
           )
         }
       </form>
-
+      </Grid>
     </Container>
+    </Paper>
+    </Grid>
   );
 }
 

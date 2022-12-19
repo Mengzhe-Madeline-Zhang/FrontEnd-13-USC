@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { addProduct, Product } from "../../Redux/product.slice";
-import { useAppDispatch } from "../../Redux/store.hook";
+// import { addProduct, Product } from "../../Redux/product.slice";
+// import { useAppDispatch } from "../../Redux/store.hook";
 import {
   Typography,
   Box,
@@ -15,26 +15,28 @@ type Props = {
 }
 
 export default function UploadPage(prop:Props){
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  const [product, setProduct] = useState<Product>({
-    id: 0,
-    name: "",
-    price: 0,
-    description: "",
-    image: "",
-  });
+  // const [product, setProduct] = useState<
+  // Product
+  // >({
+  //   id: 0,
+  //   name: "",
+  //   price: 0,
+  //   description: "",
+  //   image: "",
+  // });
   const [productImage, setProductImage] = useState(null);
   const [imageURL, setImageURL] = useState("");
 
-  const handleChange = ({
-    target: { name, value },
-  }: React.ChangeEvent<HTMLInputElement>) =>
-    setProduct((prev) => {
-      (prev as any)[name] = value;
-      const newValue = { ...prev };
-      return newValue;
-    });
+  // const handleChange = ({
+  //   target: { name, value },
+  // }: React.ChangeEvent<HTMLInputElement>) =>
+  //   setProduct((prev) => {
+  //     (prev as any)[name] = value;
+  //     const newValue = { ...prev };
+  //     return newValue;
+  //   });
 
   const imageUploadHandler = (e: any) => {
     e.preventDefault();
@@ -49,14 +51,14 @@ export default function UploadPage(prop:Props){
     }
   }, [productImage]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    product.image = imageURL;
-    // dispatch(addProduct(product));
-    dispatch(addProduct({ ...product }));
-  };
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   product.image = imageURL;
+  //   // dispatch(addProduct(product));
+  //   dispatch(addProduct({ ...product }));
+  // };
 
-  const { id, name, price, description, image } = product;
+  // const { id, name, price, description, image } = product;
 
   return (
     <Dialog open={prop.show} fullScreen>
@@ -76,46 +78,46 @@ export default function UploadPage(prop:Props){
           <Typography variant="h4">Upload Products</Typography>
         </Box>
         <Box>
-          <form className="product-upload-form" onSubmit={handleSubmit}>
+          {/* <form className="product-upload-form" onSubmit={handleSubmit}> */}
             <div>
               <Typography variant="subtitle1"> Product ID: </Typography>{" "}
-              <input
+              {/* <input
                 type="number"
                 placeholder="id"
                 name="id"
                 value={id}
                 onChange={handleChange}
-              />{" "}
+              />{" "} */}
             </div>
             <div>
             <Typography variant="subtitle1">Product Name: </Typography>{" "}
-              <input
+              {/* <input
                 type="text"
                 placeholder="product name"
                 name="name"
                 value={name}
                 onChange={handleChange}
-              />
+              /> */}
             </div>
             <div>
             <Typography variant="subtitle1">Product Price: </Typography>{" "}
-              <input
+              {/* <input
                 type="number"
                 placeholder="price"
                 name="price"
                 value={price}
                 onChange={handleChange}
-              />
+              /> */}
             </div>
             <div>
               <Typography variant="subtitle1">Description: </Typography>{" "}
-              <input
+              {/* <input
                 type="text"
                 placeholder="description"
                 name="description"
                 value={description}
                 onChange={handleChange}
-              />
+              /> */}
             </div>
             <div className="upload-picture-container">
             <Typography variant="subtitle1">Upload Picture:</Typography>
@@ -133,7 +135,7 @@ export default function UploadPage(prop:Props){
                 Upload Products
               </button>
             </div>
-          </form>
+          {/* </form> */}
         </Box>
       </div>
     </Dialog>
