@@ -161,7 +161,7 @@ function SessionForm(props: any) {
           </Container>
         ) : (
           <Container>
-            <BannerShopButton type="submit" fullWidth variant="contained" color="primary">
+            <BannerShopButton sx={{ width: "300px" }} type="submit" fullWidth variant="contained" color="primary">
               Sign Up
             </BannerShopButton>
             <Typography variant='subtitle1' >Aleady have account? {'\u00A0'} 

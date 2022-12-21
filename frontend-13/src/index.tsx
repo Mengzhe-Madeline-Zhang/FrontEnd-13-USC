@@ -31,7 +31,7 @@ const store2 = store;
 root.render(
   // <React.StrictMode>
   // <Provider store={store1} >
-<Provider store={store2} > 
+  <Provider store={store2} >  
  {/* <Provider store={store2} context={store2Context}> */}
 {/* </Provider><Provider store={store2}>  */}
   {/* <Provider store={store2} context={store2Context}>  */}
