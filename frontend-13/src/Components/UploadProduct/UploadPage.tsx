@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { addProduct, Product } from "../../Redux/product.slice";
-import { useAppDispatch } from "../../Redux/store.hook";
+import { addProduct, Product } from "../../Redux/toolkit/product.slice";
+import { useAppDispatch } from "../../Redux/toolkit/store.hook";
 import {
   Typography,
   Box,
   Dialog,
   IconButton,
+  Paper
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -60,8 +61,11 @@ export default function UploadPage(prop:Props){
 
   const { id, name, price, description, image } = product;
 
+  const paperStyle={padding :20,height:'80vh',width:500, margin:"50px auto"}
   return (
     <Dialog open={prop.show} fullScreen>
+     
+
       <Box
         m={1}
         display="flex"
@@ -72,7 +76,8 @@ export default function UploadPage(prop:Props){
           <CloseIcon />
         </IconButton>
       </Box>
-
+      
+      <Paper elevation={10} style={paperStyle}>
       <div className="product-upload-container">
         <Box display="flex" justifyContent="center" sx={{ p: 4 }}>
           <Typography variant="h4">Upload Products</Typography>
@@ -138,6 +143,7 @@ export default function UploadPage(prop:Props){
           </form>
         </Box>
       </div>
+      </Paper>
     </Dialog>
   );
 };

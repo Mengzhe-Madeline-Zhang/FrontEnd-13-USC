@@ -1,13 +1,13 @@
 import Comment from "./product_comments";
 import Button from "@mui/material/Button";
-import { Product } from "../../Redux/product.slice";
+import { Product } from "../../Redux/toolkit/product.slice";
 import { Dialog, IconButton, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useAppDispatch, useAppSeletor } from "../../Redux/store.hook";
+import { useAppDispatch, useAppSeletor } from "../../Redux/toolkit/store.hook";
 import { useParams } from "react-router-dom";
-import { getProductsSelector } from "../../Redux/product.slice";
+import { getProductsSelector } from "../../Redux/toolkit/product.slice";
 import { useSelector } from "react-redux";
-import { addToCart } from "../../Redux/cart.slice";
+import { addToCart } from "../../Redux/toolkit/cart.slice";
 
 type DetailPropsType={
     product:Product,

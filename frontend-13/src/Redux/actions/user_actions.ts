@@ -1,4 +1,4 @@
-import * as sessionUtil from '../api/session_api_util';
+import * as sessionUtil from '../../api/session_api_util';
 export const RECEIVE_NEW_USER = 'RECEIVE_NEW_USER';
 export const RECEIVE_SIGNUP_ERROR = 'RECEIVE_SIGNUP_ERROR';
 

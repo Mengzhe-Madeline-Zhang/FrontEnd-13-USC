@@ -27,9 +27,9 @@ import {
   import FavoriteIcon from "@mui/icons-material/Favorite";
   import SearchIcon from "@mui/icons-material/Search";
   import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-  import { OpenCart, getCartStatus } from "../../../Redux/showcart.slice";
-  import { useAppDispatch, useAppSeletor } from "../../../Redux/store.hook";
-import { getCartItemAmount } from "../../../Redux/cart.slice";
+  import { OpenCart, getCartStatus } from "../../../Redux/toolkit/showcart.slice";
+  import { useAppDispatch, useAppSeletor } from "../../../Redux/toolkit/store.hook";
+import { getCartItemAmount } from "../../../Redux/toolkit/cart.slice";
 import {useState, MouseEvent} from 'react';
 import UploadPage from "../../UploadProduct/UploadPage";
 

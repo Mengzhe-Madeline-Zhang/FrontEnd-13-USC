@@ -12,10 +12,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import FitScreenIcon from "@mui/icons-material/FitScreen";
 import { Stack, Tooltip, Typography, } from "@mui/material";
-import { addToCart } from "../../Redux/cart.slice";
-import {useAppDispatch, useAppSeletor} from '../../Redux/store.hook';
-import {getProductsSelector, Product} from "../../Redux/product.slice";
-import { OpenDetail, getDetailStatus } from "../../Redux/showdetailpage.slice";
+import { addToCart } from "../../Redux/toolkit/cart.slice";
+import {useAppDispatch, useAppSeletor} from '../../Redux/toolkit/store.hook';
+import {getProductsSelector, Product} from "../../Redux/toolkit/product.slice";
 import ProductDetails from "../product_pages/product_detail";
 import {useNavigate} from 'react-router-dom';
 

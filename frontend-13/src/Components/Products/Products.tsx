@@ -2,7 +2,7 @@ import { Box, Button, Container, Grid } from "@mui/material";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { data } from "../../data";
-import { getProductsSelector } from "../../Redux/product.slice";
+import { getProductsSelector } from "../../Redux/toolkit/product.slice";
 import ProductCard from "./ProductCard";
 
 export default function Products() {
