@@ -27,18 +27,18 @@ import {
   import FavoriteIcon from "@mui/icons-material/Favorite";
   import SearchIcon from "@mui/icons-material/Search";
   import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-  // import { OpenCart, getCartStatus } from "../../../Redux/showcart.slice";
-  // import { useAppDispatch, useAppSeletor } from "../../../Redux/store.hook";
-// import { getCartItemAmount } from "../../../Redux/cart.slice";
+  import { OpenCart, getCartStatus } from "../../../Redux/showcart.slice";
+  import { useAppDispatch, useAppSeletor } from "../../../Redux/store.hook";
+import { getCartItemAmount } from "../../../Redux/cart.slice";
 import {useState, MouseEvent} from 'react';
-// import UploadPage from "../../UploadProduct/UploadPage";
+import UploadPage from "../../UploadProduct/UploadPage";
 
 
 function NavBar(){
-  // const dispatch = useAppDispatch();
-  // const show = useAppSeletor(getCartStatus);
-  // const handleOpenCart = (showornot:boolean)=>{dispatch(OpenCart(showornot))};
-  // const ItemAmount = useAppSeletor(getCartItemAmount);
+  const dispatch = useAppDispatch();
+  const show = useAppSeletor(getCartStatus);
+  const handleOpenCart = (showornot:boolean)=>{dispatch(OpenCart(showornot))};
+  const ItemAmount = useAppSeletor(getCartItemAmount);
  
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -49,7 +49,7 @@ function NavBar(){
   const handleClose = () => {
     setAnchorEl(null);
   };
-// const [showUploadPage, setShowUploadPage] = useState(false);
+const [showUploadPage, setShowUploadPage] = useState(false);
 
 return(
   <>
@@ -85,11 +85,11 @@ return(
          </ListItem>
          <Divider orientation="vertical" flexItem />
 
-        < ListItem button
+        <ListItem button
           sx={{
             justifyContent: "center",
           }}
-          // onClick={()=>handleOpenCart(show)}
+          onClick={()=>handleOpenCart(show)}
           
         >
           <ListItemIcon
@@ -99,9 +99,9 @@ return(
               color: Colors.secondary,
             }}
           >
-            {/* <Badge color="secondary" badgeContent={ItemAmount}> */}
+            <Badge color="secondary" badgeContent={ItemAmount}>
             <ShoppingCartIcon />
-            {/* </Badge> */}
+            </Badge>
           </ListItemIcon>
         </ListItem >
         <Divider orientation="vertical" flexItem />
@@ -124,7 +124,7 @@ return(
         <Divider orientation="vertical" flexItem />
 
         <ListItem button
-        // component="a" href="/login"
+       // component="a" href="/login"
           sx={{
             justifyContent: "center",
           }}
@@ -157,8 +157,8 @@ return(
         }}
       >
         <MenuItem onClick={handleClose} component="a" href="/login">My account</MenuItem>
-        {/* <MenuItem onClick={()=>{handleClose();
-        setShowUploadPage(true)}}>Upload Product</MenuItem> */}
+        <MenuItem onClick={()=>{handleClose();
+        setShowUploadPage(true)}}>Upload Product</MenuItem>
       </Menu>
 
         <Divider orientation="vertical" flexItem />
@@ -166,7 +166,7 @@ return(
           </MyList>
        
     </AppbarContainer>
-    {/* <UploadPage show={showUploadPage} handleShow={setShowUploadPage}/> */}
+    <UploadPage show={showUploadPage} handleShow={setShowUploadPage}/>
     </>
 );
 

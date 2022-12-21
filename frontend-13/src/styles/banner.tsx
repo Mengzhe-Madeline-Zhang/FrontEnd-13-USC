@@ -89,7 +89,7 @@ export const BannerShopButton = styled(Button, {
   [theme.breakpoints.up("sm")]: {
     // position: "absolute",    
     // bottom: "2%",
-    width: "300px",
+    // width: "300px",
     fontSize: "14px",
     padding: "10px 0",
     // animation:

@@ -149,7 +149,7 @@ function SessionForm(props: any) {
         )}
         {props.formType === "login" ? (
           <Container>
-            <BannerShopButton type="submit" fullWidth variant="contained" color="primary">
+            <BannerShopButton sx={{ width: "300px" }}  type="submit" fullWidth variant="contained" color="primary">
               Login
             </BannerShopButton>
             <Typography variant='subtitle1'> New here? {'\u00A0'}
