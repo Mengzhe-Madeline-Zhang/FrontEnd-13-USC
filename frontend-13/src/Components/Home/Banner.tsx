@@ -4,7 +4,7 @@ import {
     BannerContent,
     BannerDescription,
     BannerImage,
-    // BannerShopButton,
+    BannerShopButton,
     BannerTitle,
   } from "../../styles/banner";
 
@@ -24,7 +24,7 @@ export default function Banner(){
             tempor incididunt ut labore et dolore magna
           </BannerDescription>
   
-          {/* <BannerShopButton color="primary">Shop Now</BannerShopButton> */}
+          <BannerShopButton color="primary">Shop Now</BannerShopButton>
         </BannerContent>
       </BannerContainer>
     )

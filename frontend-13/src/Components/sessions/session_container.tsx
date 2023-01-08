@@ -1,12 +1,12 @@
 import {connect} from 'react-redux';
-import { login } from '../../actions/session_actions';
-import { signup } from '../../actions/user_actions';
+import { login } from '../../Redux/actions/session_actions';
+import { signup } from '../../Redux/actions/user_actions';
 import SessionForm from './session_form'
 
 const mSTP = (state:any) => {
     return {
         currentUser: state.session.user,
-        users: state.users.signUpStatus,
+        signUpStatus: state.users.signUpStatus,
         loginError: state.session.loginError,
         registerError: state.users.signUpError
     }
@@ -21,3 +21,5 @@ const mDTP = (dispatch:any) => {
 
 
 export default connect(mSTP,mDTP)(SessionForm);
+
+

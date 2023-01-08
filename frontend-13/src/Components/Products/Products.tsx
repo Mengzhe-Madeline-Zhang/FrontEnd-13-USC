@@ -1,8 +1,13 @@
 import { Box, Button, Container, Grid } from "@mui/material";
-import { products } from "../../data";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { data } from "../../data";
+import { getProductsSelector } from "../../Redux/toolkit/product.slice";
 import ProductCard from "./ProductCard";
 
 export default function Products() {
+
+  const products = useSelector(getProductsSelector);
 
   const renderProducts = products.map((product) => (
     <Grid item key={product.id} xs={2} sm={4} md={4} display="flex" flexDirection={'column'} alignItems="center">

@@ -1,5 +1,10 @@
 import { createTheme } from "@mui/material/styles";
 import { darken, lighten } from "polished";
+// import type {} from '@mui/x-data-grid-pro/themeAugmentation';
+// import type {} from '@mui/x-data-grid/themeAugmentation';
+// import type {} from '@mui/lab/themeAugmentation';
+// import type {} from '@mui/x-data-grid-premium/themeAugmentation';
+// import type {} from '@material-ui/lab/themeAugmentation';
 
 export const DrawerWidth = 250;
 
@@ -78,25 +83,31 @@ const theme = createTheme({
         }
       }
     },
-    // MyShopButton: {
+
+    // ShopButton: {
     //   styleOverrides: {
     //     root: {
     //       color: Colors.white,
     //     },
+
     //     primary: {
-    //       background: Colors.primary,
+    //       background: `${Colors.primary}`,
+    //       // background: '${Colors.primary}',
     //       "&:hover": {
     //         background: lighten(0.05, Colors.primary),
     //       },
     //     },
+
     //     secondary: {
     //       background: `${Colors.secondary}`,
     //       "&:hover": {
     //         background: lighten(0.05, Colors.secondary),
     //       },
     //     },
+
     //   },
     // },
+
   },
 });
 

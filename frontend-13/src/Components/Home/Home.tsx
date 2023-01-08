@@ -1,10 +1,26 @@
+import { useState } from 'react';
 import { Typography, Link, Container,Box } from "@mui/material";
 import Banner from "./Banner";
 import Promotions from "./Promotions";
 import Products from "../Products/Products";
 import Footer from "./Footer";
+import Cart from "../Cart/Cart";
+import UploadPage from '../UploadProduct/UploadPage';
+
+export type CartItemType = {
+  id: number;
+  name: string;
+  price: number;
+  // category: string;
+  description: string;
+  image: string;
+  amount: number;
+};
+
 
 function Home() {
+
+
   return (
     <div>
        <Promotions/>
@@ -14,12 +30,7 @@ function Home() {
             </Box>
       <Products/>
       <Footer/>
-          {/* <Typography color="primary.dark" variant="h1">
-            Welcome! This is home page.
-          </Typography>
-          <Link href="/login">
-          Please sign in & sign up here!
-          </Link> */}
+      <Cart/>
     </div>
   );
 }
