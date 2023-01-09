@@ -68,7 +68,7 @@ return(
         <ListItemText secondary="Categories" />
         </ListItem>
        
-        <ListItem button component="a" href="/">
+        <ListItem button component="a" href="/products">
         <ListItemText secondary="Products" />   
         </ListItem>
 

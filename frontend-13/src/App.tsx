@@ -6,6 +6,7 @@ import NavBar from './Components/public/NavBar/NavBar';
 import { Typography, Link, Container } from "@mui/material";
 import { ThemeProvider } from "@mui/system";
 import theme from "./styles/theme";
+import AllProducts from './Components/all_products/AllProducts';
 import ProductDetails from './Components/product_pages/product_detail';
 
 
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/" element={<Home/>} />
                 <Route path='/login' element={<SessionForm formType='login'/>} />
                 <Route path='/signup' element={<SessionForm formType='sign_up'/>} />
+                <Route path='/products' element={<AllProducts/>} />
                 {/* <Route path='/product-detail-test' element={<ProductDetails/>} /> */}
                 {/* <Route path='/products/:productId' element={<ProductDetails/>} /> */}
               </Routes>
