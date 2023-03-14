@@ -1,22 +1,20 @@
 import {connect} from 'react-redux';
-import { login } from '../../Redux/actions/session_actions';
-import { signup } from '../../Redux/actions/user_actions';
+import { login,signup} from '../../Redux/actions/session_actions';
 import SessionForm from './session_form'
 
 const mSTP = (state:any) => {
     return {
-        currentUser: state.session.user,
-        signUpStatus: state.users.signUpStatus,
-        loginError: state.session.loginError,
-        registerError: state.users.signUpError
+        currentUserId: state.session.id,
+        signUpUserId: state.users.user,
+        currentUserName: state.users.username,
+        currentUserEmail: state.users.email,
+        error: state.session.error
     }
 }
 
-const mDTP = (dispatch:any) => {
-    return {
-        login: (user:{username:string, password:string}) => dispatch(login(user)), 
-        signUp: (user: {username:string, password:string}) => dispatch(signup(user))
-    }
+const mDTP = {
+        login: (user:any) => login(user), 
+        signUp: (user:any) => (signup(user))
 }
 
 

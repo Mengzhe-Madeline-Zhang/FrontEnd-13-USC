@@ -7,7 +7,11 @@ import {
 } from "../../styles/banner";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSeletor } from "../../Redux/toolkit/store.hook";
+import {addCurrentUser, UserType} from "../../Redux/toolkit/user.slice";
+
 export type sessionEnum = "login" | "sign_up";
+
 
 interface sessionForm {
   formType: sessionEnum;
@@ -15,49 +19,52 @@ interface sessionForm {
 
 function SessionForm(props: any) {
   let navigate = useNavigate();
+  const [credential, setCredential] = useState("");
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [valid, setValid] = useState(true);
-  const [loginErr, setLoginErr] = useState(false);
-  const [signUpErr, setSignUpErr] = useState(false);
-
+  const [error, setErrors] = useState(false);
+  const dispatch = useAppDispatch();
+  const addCurrUser = (user: UserType) => dispatch(addCurrentUser(user)); 
   useEffect(() => {
-    console.log(props.formType)
-    if(props.formType === "login") {
-      console.log(username);
-    }
-  },[])
-  
-  
-  useEffect(() => {
-    if (props.currentUser) {
+    console.log(props.signUpStatus);
+    console.log(props.signUpUserId);
+    console.log(props);
+    if (props.currentUserId) {
       navigate("/");
+      console.log("login"+props.currentUserId)
+      const curUser = {
+        user: props.currentUserId,
+        username: props.currentUserName,
+        email: props.currentUserEmail
+      }
+      addCurrUser(curUser);
       return;
     }
-    if (props.signUpStatus === 'SUCCESS') {
-      navigate("/login")
+    if (props.signUpUserId === 'SUCCESS') {
+      navigate("/login");
+      console.log("sign up"+props.signUpUserId)
     }
-  },[props.currentUser, props.signUpStatus])
+  },[props.currentUserId, props.signUpStatus])
 
 
   const submitHandler = (e: React.SyntheticEvent ): void =>  {
     e.preventDefault();
     if (props.formType ===  'login') {
       props.login({
-        username: username,
+        credential: credential,
         password: password
       })
     } else {
       props.signUp({
         username: username,
+        email: email,
         password: password
       })
     }
   }
 
-  useEffect(() => {
-
-  },[props.currentUser])
 
 
   //Sign up password validation
@@ -68,7 +75,7 @@ function SessionForm(props: any) {
   };
 
 
-  const paperStyle={padding :20,height:'80vh',width:500, margin:"50px auto"}
+  const paperStyle={padding :20,height:'90vh',width:500, margin:"50px auto"}
   const avatarStyle={backgroundColor: Colors.secondary}
   // const btnstyle={margin:'8px 0'}
 
@@ -95,7 +102,7 @@ function SessionForm(props: any) {
         {props.formType === "login" ? (
           <div className='login-labels-container'>
             <TextField
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setCredential(e.target.value)}
               variant="outlined"
               margin="normal"
               label="Username"
@@ -120,28 +127,31 @@ function SessionForm(props: any) {
               margin="normal"
               label="Username"
               value={username}
-              error={username!=="" && username.length<3}
-              helperText={username!=="" && username.length<3?'User name must be 3 characters long!':''}
+              error={username !=="" && username.length<6}
+              helperText={username !=="" && username.length<6?'User name must be 6 characters long!':''}
               fullWidth
               required
             />
-            {/* <TextField
-              onChange={(e) => setName(e.target.value)}
+            <TextField
+              onChange={(e) => setEmail(e.target.value)}
               variant="outlined"
               margin="normal"
-              label="First Name"
+              label="Email"
+              value={email}
+              error={email !=="" && email.length<6}
+              helperText={email !=="" && email.length<6?'Please use a valid email!':''}
               fullWidth
               required
-            /> */}
+            />
             <TextField
-              onChange={(e) => handleValidation(e)}
+              onChange={(e) => setPassword(e.target.value)}
               variant="outlined"
               margin="normal"
               label="Password"
               type="password"
               value={password}
-              error={!valid}
-              helperText={!valid?'Password must be minimum 4 characters, at least one uppercase letter, one lowercase letter, one number and one special character':''}
+              error={password !=="" && password.length<6}
+              helperText={password !=="" && password.length<6?'Password must be minimum 6 characters':''}
               fullWidth
               required
             />

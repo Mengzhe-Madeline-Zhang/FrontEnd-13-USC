@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { addProduct, Product } from "../../Redux/toolkit/product.slice";
+import { addProduct, Product, addProductAsync } from "../../Redux/toolkit/product.slice";
 import { useAppDispatch } from "../../Redux/toolkit/store.hook";
 import {
   Typography,
   Box,
   Dialog,
   IconButton,
-  Paper
+  Paper,
+  Alert,
+  Collapse,
+  Button
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import * as productUtil from '../../api/products_api'
 
 type Props = {
   show: boolean;
@@ -18,10 +22,11 @@ type Props = {
 export default function UploadPage(prop:Props){
   const dispatch = useAppDispatch();
 
-  const [product, setProduct] = useState<
-  Product
-  >({
-    id: 0,
+  const [product, setProduct] = useState
+  <Product>
+  ({
+    id:0,
+    seller_id: "",
     name: "",
     price: 0,
     description: "",
@@ -43,12 +48,15 @@ export default function UploadPage(prop:Props){
     e.preventDefault();
     if (e.target.files) {
       setProductImage(e.target.files[0]);
+      // console.log(e.target.files[0]);
     }
   };
 
   useEffect(() => {
     if (productImage) {
       setImageURL(URL.createObjectURL(productImage));
+       URL.revokeObjectURL(productImage);
+      // setImageURL(productImage);
     }
   }, [productImage]);
 
@@ -56,12 +64,27 @@ export default function UploadPage(prop:Props){
     e.preventDefault();
     product.image = imageURL;
     // dispatch(addProduct(product));
-    dispatch(addProduct({ ...product }));
+    // dispatch(addProduct({ ...product }));
+    dispatch(addProductAsync(product));
+    setOpenSucess(true);  
+    setProduct({
+      id:0,
+      seller_id: "",
+      name: "",
+      price: 0,
+      description: "",
+      image: "",
+    });
   };
 
-  const { id, name, price, description, image } = product;
+  const { 
+    seller_id, 
+    name, price, description, image } = product;
 
-  const paperStyle={padding :20,height:'80vh',width:500, margin:"50px auto"}
+  const paperStyle={padding :20,height:'80vh',width:500, margin:"50px auto"};
+
+  const [openSucess, setOpenSucess] = React.useState(false);
+
   return (
     <Dialog open={prop.show} fullScreen>
      
@@ -87,10 +110,10 @@ export default function UploadPage(prop:Props){
             <div>
               <Typography variant="subtitle1"> Product ID: </Typography>{" "}
               <input
-                type="number"
+                type="text"
                 placeholder="id"
-                name="id"
-                value={id}
+                name="seller_id"
+                value={seller_id}
                 onChange={handleChange}
               />{" "}
             </div>
@@ -136,9 +159,33 @@ export default function UploadPage(prop:Props){
               />
               </div>
 
-              <button className="upload-product-btn" type="submit">
+              <Button className="upload-product-btn" type="submit" 
+              disabled={openSucess}>
                 Upload Products
-              </button>
+              </Button>
+
+
+              <Box sx={{ width: '100%' }}>
+      <Collapse in={openSucess}>
+        <Alert
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => {
+                setOpenSucess(false);
+              }}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          }
+          sx={{ mb: 2 }}
+        >
+          Upload Successful!
+        </Alert>
+      </Collapse>
+    </Box>
             </div>
           </form>
         </Box>
