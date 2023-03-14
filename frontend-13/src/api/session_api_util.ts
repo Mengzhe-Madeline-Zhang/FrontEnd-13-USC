@@ -1,22 +1,21 @@
 import axios from 'axios';
 
-export const signup = (userData:{username: string; password: string}) => {
-
+export const login = (user:any) => {
     return axios({
+        url: '/api/session',
         method: 'post',
-        data: userData,
-        url: 'http://localhost:8080/users'
+        data: {
+            user: {
+                credential: user.credential,
+                password: user.password
+            }
+        }
     })
 }
 
-export const login = (userData:{username: string; password: string}) => {
-
+export const logout = () => {
     return axios({
-        method: 'post',
-        params: {
-            username: userData.username,
-            password: userData.password
-        },
-        url: 'http://localhost:8080/login'
+        url: '/api/session',
+        method: 'delete'
     })
 }
